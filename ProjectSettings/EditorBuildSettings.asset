@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/modelingTest.unity
+    guid: e809c4348f716524a963da713341c8bc
+  - enabled: 1
+    path: Assets/Scenes/lyh.unity
+    guid: 149d735e43fcafa4799af78453a4fb04
   m_configObjects: {}
