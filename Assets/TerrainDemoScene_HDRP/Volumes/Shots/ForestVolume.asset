@@ -192,7 +192,7 @@ MonoBehaviour:
   active: 1
   opacity:
     m_OverrideState: 1
-    m_Value: 0.85
+    m_Value: 0.407
   upperHemisphereOnly:
     m_OverrideState: 0
     m_Value: 1
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 0
     m_Value: 0
@@ -1018,7 +1018,7 @@ MonoBehaviour:
     m_Value: 50
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 600
+    m_Value: 1000
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
@@ -1030,7 +1030,7 @@ MonoBehaviour:
     m_Value: 1
   depthExtent:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 50
   denoisingMode:
     m_OverrideState: 0
     m_Value: 2
@@ -1100,8 +1100,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.30120483
-          value: 0.34010154
+          time: 0.33040935
+          value: 0.29813665
           inSlope: 1.2736038
           outSlope: 1.2736038
           tangentMode: 0
