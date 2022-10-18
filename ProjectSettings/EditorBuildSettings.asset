@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/modelingTest.unity
-    guid: e809c4348f716524a963da713341c8bc
-  - enabled: 1
-    path: Assets/Scenes/lyh.unity
-    guid: 149d735e43fcafa4799af78453a4fb04
+    path: Assets/Scenes/lyh_reality.unity
+    guid: bb59560efa144894e9eabc08ebde20db
   m_configObjects: {}

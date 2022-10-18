@@ -11,6 +11,21 @@
             "dependency": [
                 "Common"
             ]
+        },
+        {
+            "name": "CacheStorage",
+            "version": "1.0.1",
+            "dependency": [
+                "Common"
+            ]
+        },
+        {
+            "name": "UI",
+            "version": "2.5.1",
+            "dependency": [
+                "Common",
+                "CacheStorage"
+            ]
         }
     ]
 }
