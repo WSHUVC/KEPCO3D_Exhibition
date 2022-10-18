@@ -6,7 +6,7 @@ using UnityEngine;
 using WSH.Core.Util;
 using WSH.Util;
 
-namespace WSH.Core.Util
+namespace WSH.UI
 {
     public class GroundPointer : MonoBehaviour
     {
@@ -18,7 +18,7 @@ namespace WSH.Core.Util
         }
 
         public List<GameObject> pointObjects = new List<GameObject>();
-        void SpawnPoint(GameObject[] targets)
+        public void SpawnPoint(GameObject[] targets)
         {
             pointObjects.Clear();
             var gps = FindObjectsOfType<Tag_GP>();

@@ -5,16 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using WSH.Core.Manager;
+using WSH.Util;
 
 namespace WSH.Core
 {
     [Serializable]
     public class Managers : MonoBehaviour
     {
+        static Managers _ins;
         public static Managers instance
         {
-            get;
-            private set;
+            get
+            {
+                if(_ins==null)
+                {
+                    _ins = FindObjectOfType<Managers>();
+                    _ins.Initialize();
+                }
+                return _ins;
+            }
+            private set {
+                _ins = value;
+            }
         }
         protected virtual void Awake()
         {
@@ -24,12 +36,16 @@ namespace WSH.Core
                 return;
             }
             instance = this;
+            Initialize();
+        }
+        [SerializeField] UIManager _uiManager = new UIManager();
+        [SerializeField] MachineManager _machineManager = new MachineManager();
+
+        void Initialize()
+        {
             _uiManager.Initialize();
             _machineManager.Initialize();
         }
-        [SerializeField] UIManager _uiManager;
-        [SerializeField] MachineManager _machineManager;
-
         public static UIManager uiManager
         {
             get => instance._uiManager;

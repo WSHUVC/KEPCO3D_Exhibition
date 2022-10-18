@@ -1,11 +1,8 @@
-﻿using UnityEngine;
-using UnityEditor;
-
-        using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using System.IO;
 
 namespace WSH.Util
 {
