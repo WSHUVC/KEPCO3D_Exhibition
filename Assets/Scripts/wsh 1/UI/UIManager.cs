@@ -24,19 +24,24 @@ namespace WSH.Core.Manager
                     canvas_Idle = c as UI_Canvas_Idle;
                     canvas_Idle.button_IdleOff.onClick.AddListener(IdleOff);
                 }
-                else if(c is UI_Canvas_TopBar)
+                else if (c is UI_Canvas_TopBar)
                 {
                     canvas_TopBar = c as UI_Canvas_TopBar;
                 }
-                else if(c is UI_Canvas_Bottom)
+                else if (c is UI_Canvas_Bottom)
                 {
                     canvas_Bottom = c as UI_Canvas_Bottom;
+                }
+                else if ( c is UI_Canvas_Tabs)
+                {
+                    canvas_Tabs = c as UI_Canvas_Tabs;
                 }
             }
         }
         UI_Canvas_Idle canvas_Idle;
         UI_Canvas_TopBar canvas_TopBar;
         UI_Canvas_Bottom canvas_Bottom;
+        UI_Canvas_Tabs canvas_Tabs;
 
         public List<GameObject> allUI = new List<GameObject>();
         public void IdleOff()
