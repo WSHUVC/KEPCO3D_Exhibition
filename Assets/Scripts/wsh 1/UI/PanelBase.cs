@@ -23,6 +23,12 @@ namespace WSH.UI
             }
         }
 
+        public virtual void Deactive()
+        {
+        }
+
+        public virtual void Active() { }
+
         public bool TryGetUIElement<T>(string name, out T result) where T : UIBehaviour
         {
             if (nameTable.TryGetValue(name, out var element))
@@ -40,6 +46,9 @@ namespace WSH.UI
             return false;
         }
 
-
+        public void PlayAnimation(bool rewind = false)
+        {
+            GetComponent<UIAnimation>()?.Play(rewind);
+        }
     }
 }

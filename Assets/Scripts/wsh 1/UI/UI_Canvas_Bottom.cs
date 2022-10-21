@@ -15,11 +15,13 @@ namespace WSH.UI
         public override void Active()
         {
             base.Active();
+            panel_BottomButtons.Active();
             PlayAnimation(panel_BottomButtons);
         }
         public override void Deactive()
         {
             base.Deactive();
+            panel_BottomButtons.Deactive();
             PlayAnimation(panel_BottomButtons, true);
         }
     }

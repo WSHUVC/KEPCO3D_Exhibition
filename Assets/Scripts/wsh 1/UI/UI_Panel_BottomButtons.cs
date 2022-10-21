@@ -20,6 +20,26 @@ namespace WSH.UI
             {
                 placeButtons[i].AddListener(OnClick_PlaceButton);
             }
+            panel_PlaceAndSensors = GetComponentsInChildren<UI_Panel_PlaceAndSensor>();
+        }
+
+        public override void Active()
+        {
+            base.Active();
+            foreach(var p in panel_PlaceAndSensors)
+            {
+                p.Active();
+            }
+        }
+
+        UI_Panel_PlaceAndSensor[] panel_PlaceAndSensors;
+        public override void Deactive()
+        {
+            base.Deactive();
+            foreach(var p in panel_PlaceAndSensors)
+            {
+                p.Deactive();
+            }
         }
 
         void OnClick_PlaceButton()

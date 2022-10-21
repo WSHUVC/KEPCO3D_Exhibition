@@ -11,11 +11,13 @@ namespace WSH.Core.Manager
         Managers managers;
         public CanvasBase[] canvasis;
         public static UIManager instance;
+        PanelBase[] panels;
         private void Awake()
         {
             instance = this;
             managers = FindObjectOfType<Managers>();
             canvasis = FindObjectsOfType<CanvasBase>();
+            panels = FindObjectsOfType<PanelBase>();
             foreach(var c in canvasis)
             {
                 c.Initialize();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using WSH.Core;
 using WSH.Core.Manager;
 using Debug = WSH.Util.Debug;
 namespace WSH.UI
@@ -51,6 +52,7 @@ namespace WSH.UI
         {
             Debug.Log($"{button_Sensor}:OnClick_Sensor");
             UIManager.instance.GetCanvas<UI_Canvas_Bottom>().PlayAnimation(panel_BottomButtons);
+            FindObjectOfType<Managers>().ActiveSensorFlag();
         }
     }
 }
