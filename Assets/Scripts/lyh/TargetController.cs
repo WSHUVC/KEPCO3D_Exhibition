@@ -47,9 +47,6 @@ public class TargetController : MonoBehaviour
         //시작점 추가
         nodesPositions.Insert(0, startPoint.position);
       
-     
-       
-
         foreach (var routePoint in nodes)
         {
             Debug.Log($" Beizer Move Order route -> {routePoint.name}");
@@ -59,7 +56,10 @@ public class TargetController : MonoBehaviour
     }
 
 
-
+    public void moveToSensor(Transform ts)
+    {
+        transform.position = Vector3.Lerp(transform.position, ts.position, 3);
+    }
 
 
     IEnumerator LerpPosition(Vector3[] targetPositions, float duration)

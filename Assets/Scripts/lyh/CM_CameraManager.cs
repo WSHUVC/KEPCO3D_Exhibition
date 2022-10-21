@@ -7,18 +7,25 @@ public class CM_CameraManager : MonoBehaviour
 {
     // TargetController에  이동시킬 way의 startpoint, endPoint, way dierect 를 정해줌
 
-    private int currentWayPoint = 0;
+    public int currentWayPoint = 0;
+
+
+    public CinemachineVirtualCamera TargetTracking_Camera;
 
     public TargetController targetController;
     public static CM_CameraManager instance;
     public Transform[] wayPoints;
     public GameObject[] ways;
 
+    // Paths
+    public CinemachineSmoothPath MainTrack;
+    public CinemachineSmoothPath FirstZoneTrack;
+    public CinemachineSmoothPath SecondZoneTrack;
+    public CinemachineSmoothPath ThirdZoneTrack;
 
-    public GameObject TargetTracking_Camera;
+    // Sensors
+    public Transform[] sensors = new Transform[12];
 
-
-    
     private void Awake()
     {
 
@@ -29,22 +36,26 @@ public class CM_CameraManager : MonoBehaviour
 
     public void moveTopToFristZone()
     {
+        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
         MoveCameraTo(1);
     }
 
     public void moveTopToSecondZone()
     {
+        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
         MoveCameraTo(2);
     }
 
 
     public void moveTopToThirdZone()
     {
-      MoveCameraTo(3);
+        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
+        MoveCameraTo(3);
     }
 
     public void moveTopToFourthZone()
     {
+        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
         MoveCameraTo(4);
     }
 
@@ -119,5 +130,50 @@ public class CM_CameraManager : MonoBehaviour
         StartCoroutine(MoveOrderTo(viewPoint));
 
     }
+
+
+
+
+    public void ChangeDollyTrack()
+    {
+        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = FirstZoneTrack;
+    }
+
+
+
+    public void  ZoomintoSensor(int sensorNumber)
+    {
+        
+        // ZoomTrack 으로 변경
+        switch (sensorNumber)
+        {
+            case int n when (n < 4):
+                Debug.Log("FirstZone Excute");
+                currentWayPoint = 1;
+                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = FirstZoneTrack;
+                break;
+
+            case int n when (n < 8 && n >= 4):
+                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = SecondZoneTrack;
+                currentWayPoint = 2;
+                Debug.Log("SecondZone Excute");
+                break;
+
+            case int n when (12 < 8 && n >= 8):
+                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = ThirdZoneTrack;
+                currentWayPoint = 3;
+                Debug.Log("ThirdZone Excute");
+                break;
+        }
+        
+
+
+
+        // 3개중 하나 
+        // Target을 센서 위치로 이동
+        targetController.moveToSensor(sensors[sensorNumber]);
+    }
+
+
 }
 
