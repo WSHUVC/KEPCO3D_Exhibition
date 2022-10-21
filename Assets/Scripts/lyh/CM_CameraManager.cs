@@ -175,7 +175,9 @@ public class CM_CameraManager : MonoBehaviour
 
 
     public void  ZoomintoSensor(int sensorNumber)
-    {   
+    {
+        if (sensorNumber < 0)
+            return;
         // ZoomTrack 으로 변경
         switch (sensorNumber)
         {
