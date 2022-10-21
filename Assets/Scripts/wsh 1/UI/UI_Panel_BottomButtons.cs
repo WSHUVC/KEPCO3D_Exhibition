@@ -32,7 +32,7 @@ namespace WSH.UI
             }
         }
 
-        UI_Panel_PlaceAndSensor[] panel_PlaceAndSensors;
+        public UI_Panel_PlaceAndSensor[] panel_PlaceAndSensors;
         public override void Deactive()
         {
             base.Deactive();

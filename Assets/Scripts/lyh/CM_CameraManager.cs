@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using WSH.UI;
 
 public class CM_CameraManager : MonoBehaviour
 {
@@ -32,6 +33,18 @@ public class CM_CameraManager : MonoBehaviour
         if (instance != null) return;
         instance = this;
 
+        var panels = FindObjectOfType<UI_Panel_BottomButtons>().panel_PlaceAndSensors;
+
+        for(int i = 0; i < panels.Length; ++i)
+        {
+            int index = i+1;
+            panels[i].button_Place.onClick.AddListener(()=>moveTopToFristZone(index));
+        }
+    }
+    public void moveTopToFristZone(int index)
+    {
+        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
+        MoveCameraTo(index);
     }
 
     public void moveTopToFristZone()
@@ -142,8 +155,7 @@ public class CM_CameraManager : MonoBehaviour
 
 
     public void  ZoomintoSensor(int sensorNumber)
-    {
-        
+    {   
         // ZoomTrack 으로 변경
         switch (sensorNumber)
         {
@@ -164,11 +176,7 @@ public class CM_CameraManager : MonoBehaviour
                 currentWayPoint = 3;
                 Debug.Log("ThirdZone Excute");
                 break;
-        }
-        
-
-
-
+        }      
         // 3개중 하나 
         // Target을 센서 위치로 이동
         targetController.moveToSensor(sensors[sensorNumber]);
