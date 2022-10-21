@@ -8,7 +8,7 @@ namespace WSH.UI
 {
     public class UI_Panel_PlaceAndSensor : PanelBase
     {
-        UI_Panel_PlaceSensorList panel_PlaceSensorList;
+        public UI_Panel_PlaceSensorList panel_PlaceSensorList;
         public Button button_Place;
         public override void Initialize()
         {

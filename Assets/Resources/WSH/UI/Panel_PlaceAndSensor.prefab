@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7089472698463867882}
   - component: {fileID: 7089472698463867885}
   - component: {fileID: 7089472698463867884}
+  - component: {fileID: 42176254979228230}
   m_Layer: 5
   m_Name: Button_PlaceSensor
   m_TagString: Untagged
@@ -137,6 +138,19 @@ MonoBehaviour:
   originSize: {x: 95, y: 95}
   currentSize: {x: 95, y: 95}
   sizeRatio: 1
+--- !u!114 &42176254979228230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089472698463867886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fdbecd9219c0f4f973c5a0b8e4c9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7089472698825334416
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +164,7 @@ GameObject:
   - component: {fileID: 7089472698825334412}
   - component: {fileID: 7089472698825334415}
   - component: {fileID: 7089472698825334414}
+  - component: {fileID: 4366399613013395703}
   m_Layer: 5
   m_Name: Button_PlaceSensor (2)
   m_TagString: Untagged
@@ -274,6 +289,19 @@ MonoBehaviour:
   originSize: {x: 95, y: 95}
   currentSize: {x: 95, y: 95}
   sizeRatio: 1
+--- !u!114 &4366399613013395703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089472698825334416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fdbecd9219c0f4f973c5a0b8e4c9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7089472699116564551
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +315,7 @@ GameObject:
   - component: {fileID: 7089472699116564547}
   - component: {fileID: 7089472699116564546}
   - component: {fileID: 7089472699116564549}
+  - component: {fileID: 5926163912379725120}
   m_Layer: 5
   m_Name: Button_PlaceSensor (3)
   m_TagString: Untagged
@@ -411,6 +440,19 @@ MonoBehaviour:
   originSize: {x: 95, y: 95}
   currentSize: {x: 95, y: 95}
   sizeRatio: 1
+--- !u!114 &5926163912379725120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089472699116564551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fdbecd9219c0f4f973c5a0b8e4c9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7089472699458674668
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +466,7 @@ GameObject:
   - component: {fileID: 7089472699458674664}
   - component: {fileID: 7089472699458674667}
   - component: {fileID: 7089472699458674666}
+  - component: {fileID: 4284640859197786464}
   m_Layer: 5
   m_Name: Button_PlaceSensor (1)
   m_TagString: Untagged
@@ -548,6 +591,19 @@ MonoBehaviour:
   originSize: {x: 95, y: 95}
   currentSize: {x: 95, y: 95}
   sizeRatio: 1
+--- !u!114 &4284640859197786464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089472699458674668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fdbecd9219c0f4f973c5a0b8e4c9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7089472699739318873
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +665,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7089472699739318873}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1107,3 +1163,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb19967a7c497242aeef1fdc70e9c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel_PlaceSensorList: {fileID: 0}
+  button_Place: {fileID: 0}

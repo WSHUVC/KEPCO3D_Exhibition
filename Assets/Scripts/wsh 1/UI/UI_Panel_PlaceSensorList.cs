@@ -8,14 +8,11 @@ namespace WSH.UI
 {
     public class UI_Panel_PlaceSensorList : PanelBase
     {
-        public Button[] button_Sensors;
+        public UI_PlaceSensor[] button_Sensors;
         public override void Initialize()
         {
             base.Initialize();
-            button_Sensors = uiElements
-                .Where(ui => ui is Button)
-                .Select(i=>i as Button)
-                .ToArray();
+            button_Sensors = GetComponentsInChildren<UI_PlaceSensor>();
         }
     }
 }

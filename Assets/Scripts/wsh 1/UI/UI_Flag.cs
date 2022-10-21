@@ -15,12 +15,12 @@ namespace WSH.UI
     {
         protected Transform cam;
         protected TMP_Text text_Info;
-        protected Button button_MoveToPoint;
+        public Button button_MoveToPoint;
         protected UIAnimation[] anims;
         protected UIManager um;
 
         public TagBase targetEntity;
-        internal Button bottomButton;
+        public int index;
 
         protected override void Awake()
         {
@@ -56,6 +56,15 @@ namespace WSH.UI
         {
             foreach (var anim in anims)
                 anim.Play();
+
+            if(targetEntity is Tag_Place)
+            {
+                FindObjectOfType<CM_CameraManager>().MoveToIndexPoint(index);
+            }
+            else if(targetEntity is Tag_Sensor)
+            {
+                FindObjectOfType<CM_CameraManager>().ZoomintoSensor(index);
+            }
         }
         public override void Deactive()
         {

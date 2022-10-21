@@ -7,19 +7,12 @@ namespace WSH.UI
 {
     public class UI_Panel_BottomButtons : PanelBase
     {
-        UI_FlagButton[] placeButtons;
-        public int length => placeButtons.Length;
-        Dictionary<UI_FlagButton, UI_Flag> flagButton = new Dictionary<UI_FlagButton, UI_Flag>();
+        public Button[] placeButtons;
         public override void Initialize()
         {
             base.Initialize();
-            flagButton.Clear();
-            placeButtons = GetComponentsInChildren<UI_FlagButton>();
+            placeButtons = GetComponentsInChildren<Button>();
                 
-            for(int i = 0; i < placeButtons.Length; ++i)
-            {
-                placeButtons[i].AddListener(OnClick_PlaceButton);
-            }
             panel_PlaceAndSensors = GetComponentsInChildren<UI_Panel_PlaceAndSensor>();
         }
 
@@ -42,9 +35,5 @@ namespace WSH.UI
             }
         }
 
-        void OnClick_PlaceButton()
-        {
-
-        }
     }
 }

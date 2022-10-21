@@ -83,6 +83,8 @@ namespace WSH.Core
             {
                 DestroyImmediate(flags[i].gameObject);
             }
+            placeFlags.Clear();
+            sensorFlags.Clear();
         }
         public void ActivePlaceFlag()
         {
@@ -107,8 +109,11 @@ namespace WSH.Core
                 f.gameObject.SetActive(isActive);
         }
 
+        public List<UI_Flag> placeFlags = new List<UI_Flag>();
+        public List<UI_Flag> sensorFlags = new List<UI_Flag>();
         void Flagging(TagBase[] points, UI_Flag prefab)
         {
+            int index = 1;
             foreach (var p in points)
             {
                 var flag = Instantiate(prefab);
@@ -117,6 +122,15 @@ namespace WSH.Core
                     DestroyImmediate(p.myFlag.gameObject);
 
                 p.myFlag = flag.gameObject;
+
+                if(p is Tag_Place)
+                {
+                    placeFlags.Add(flag);
+                }
+                else if(p is Tag_Sensor)
+                {
+                    sensorFlags.Add(flag);
+                }
             }
         }
         void SetDefalutMaterial(MeshRenderer[] group, GroupIndex index)

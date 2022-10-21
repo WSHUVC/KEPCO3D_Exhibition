@@ -58,7 +58,7 @@ public class TargetController : MonoBehaviour
 
     public void moveToSensor(Transform ts)
     {
-        transform.position = Vector3.Lerp(transform.position, ts.position, 3);
+        transform.position =ts.position;
     }
 
 

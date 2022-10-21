@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using WSH.UI;
+using WSH.Core;
+using System.Linq;
+using UnityEngine.UI;
 
 public class CM_CameraManager : MonoBehaviour
 {
@@ -29,7 +32,6 @@ public class CM_CameraManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (instance != null) return;
         instance = this;
 
@@ -38,11 +40,29 @@ public class CM_CameraManager : MonoBehaviour
         for(int i = 0; i < panels.Length; ++i)
         {
             int index = i+1;
-            panels[i].button_Place.onClick.AddListener(()=>moveTopToFristZone(index));
+            panels[i].button_Place.onClick.AddListener(()=>MoveToIndexPoint(index));
+
+            //int c = 1;
+            foreach(var sensor in panels[i].panel_PlaceSensorList.button_Sensors)
+            {
+                sensor.GetComponent<Button>().onClick.AddListener(()=>ZoomintoSensor(sensor.index));
+            }
+        }
+
+        var manager = FindObjectOfType<Managers>();
+        foreach(var f in manager.placeFlags)
+        {
+            f.button_MoveToPoint.onClick.AddListener(() => MoveToIndexPoint(f.index));
+        }
+
+        foreach(var f in manager.sensorFlags)
+        {
+            f.button_MoveToPoint.onClick.AddListener(() => ZoomintoSensor(f.index));
         }
     }
-    public void moveTopToFristZone(int index)
+    public void MoveToIndexPoint(int index)
     {
+        Debug.Log($"Move To {index} point");
         TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
         MoveCameraTo(index);
     }
@@ -181,7 +201,5 @@ public class CM_CameraManager : MonoBehaviour
         // Target을 센서 위치로 이동
         targetController.moveToSensor(sensors[sensorNumber]);
     }
-
-
 }
 
