@@ -39,7 +39,7 @@ namespace WSH.Core
 
         public UI_Flag prefab_Flag_Sensor;
         public UI_Flag prefab_Flag_Place;
-
+        
         public void FindTagObjects()
         {
             roads = FindObjectsOfType<Tag_Road>();
@@ -52,7 +52,6 @@ namespace WSH.Core
             sensors = FindObjectsOfType<Tag_Sensor>();
             places = FindObjectsOfType<Tag_Place>();
         }
-
         public void SetDefaultMaterial()
         {
             SetDefalutMaterial(roads, GroupIndex.Road);
@@ -93,7 +92,6 @@ namespace WSH.Core
         {
             GroupFlagControl(sensors,true);
         }
-
         public void DeactiveSensorFlag()
         {
             GroupFlagControl(sensors, false);

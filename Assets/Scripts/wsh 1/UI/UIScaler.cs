@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace WSH.UI
 {
@@ -12,8 +6,8 @@ namespace WSH.UI
     {
         RectTransform rect;
 
-        [SerializeField] Vector2 originSize;
-        [SerializeField] Vector2 currentSize;
+        public Vector2 originSize;
+        public Vector2 currentSize;
 
         [HideInInspector]public float sizeRatio;
         public void SetScalePerRatio(float ratio)

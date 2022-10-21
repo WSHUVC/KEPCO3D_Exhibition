@@ -24,6 +24,14 @@ namespace WSH.Util
                 if (obj.GetComponent<UIBehaviour>())
                 {
                     obj.TryAddComponent<UIScaler>();
+                    var scalers = obj.GetComponents<UIScaler>();
+                    if (scalers.Length > 1)
+                    {
+                        for (int i = 1; i < scalers.Length; ++i)
+                        {
+                            GameObject.DestroyImmediate(scalers[i]);
+                        }
+                    }
                 }
             }
         }
