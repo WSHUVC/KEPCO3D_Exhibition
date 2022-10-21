@@ -20,7 +20,7 @@ public class TargetController : MonoBehaviour
 
     private void Start()
     {
-        nodesPositions.Clear();
+
     }
 
     void Update()
@@ -31,33 +31,34 @@ public class TargetController : MonoBehaviour
     public void moveTargetAsync(Transform startPoint, Transform targetPoint, GameObject selectedway, bool Reverse)
     {
         nodesPositions.Clear();
-        // 시작지점
-        transform.position = startPoint.position;
-        nodesPositions.Add(startPoint.position);
-        // 길
+        // 시작지점 추가
+        // 길 추가
         nodes = selectedway.GetComponentsInChildren<Transform>();
         for (int i = 1; i < nodes.Length; i++) // 자식 오브젝트만 뽑기위해 1부터 
         {
             nodesPositions.Add(nodes[i].position);
             //Debug.Log(nodesPositions[i]);
         }
-        // 목적지
+
+        //방향 설정(역방향/순반향)
+        if (Reverse) nodesPositions.Reverse();
+        // 목적지점 추가 
         nodesPositions.Add(targetPoint.position);
-        // 방향 설정 
-        if(Reverse)
-        {
-            //역방향
-            BeizerMoveRevert_Test();
-            BeizerMove_Test();
-        } else
-        {
-            //순방향
-            BeizerMove_Test();
-        }
+        //시작점 추가
+        nodesPositions.Insert(0, startPoint.position);
       
+     
+       
+
+        foreach (var routePoint in nodes)
+        {
+            Debug.Log($" Beizer Move Order route -> {routePoint.name}");
+        }
+        // 무빙 시작
+        BeizerMove_Test();
     }
 
- 
+
 
 
 
@@ -92,7 +93,8 @@ public class TargetController : MonoBehaviour
     }
     public void BeizerMove_Test()
     {
-        StartCoroutine(LerpPosition(nodesPositions.ToArray(), 5));
+        StartCoroutine(LerpPosition(nodesPositions.ToArray(), 3));
+ 
     }
 
     public void BeizerMoveRevert_Test()

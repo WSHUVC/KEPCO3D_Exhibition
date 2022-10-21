@@ -11,17 +11,10 @@ public class CM_CameraManager : MonoBehaviour
 
     public TargetController targetController;
     public static CM_CameraManager instance;
-
     public Transform[] wayPoints;
     public GameObject[] ways;
 
-    public GameObject Deth1_Camera;
 
-    public GameObject Deth2_Camera_Top;
-    public GameObject Deth2_Camera;
-    public GameObject Deth2_Camera1;
-    public GameObject Deth2_Camera2;
-    public GameObject Deth2_Camera3;
     public GameObject TargetTracking_Camera;
 
 
@@ -33,24 +26,6 @@ public class CM_CameraManager : MonoBehaviour
         instance = this;
 
     }
-    void Start()
-    {
-      //  StartCoroutine(MoveOrderTo(6));
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-
-   
-
 
     public void moveTopToFristZone()
     {
@@ -123,13 +98,15 @@ public class CM_CameraManager : MonoBehaviour
             reversed = graph.destinations[i] >= flag ? false : true;
             // way 선정 가는 방향이 길 번호
 
-            way = graph.destinations[i] == 0 ? 0 : graph.destinations[i] - 1; 
+     
+            way = graph.destinations[i] == 0 ? flag - 1: graph.destinations[i] - 1; 
+
 
             //Move
             Debug.Log($"WayPoint : {flag}로부터 Waypoint : {graph.destinations[i]}로 Way :{way}번 길을 {!reversed} 방향 시작 ");
             targetController.moveTargetAsync(wayPoints[flag], wayPoints[graph.destinations[i]], ways[way], reversed);
             Debug.Log($"WayPoint : {wayPoints[flag].name}로부터 Waypoint : {wayPoints[graph.destinations[i]].name}로 Way :{ways[way].name}번 길을 {!reversed} 방향 이동 완료 ");
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5);
             flag = graph.destinations[i];
  
         }
