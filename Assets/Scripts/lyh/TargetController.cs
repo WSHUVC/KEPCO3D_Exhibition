@@ -10,23 +10,10 @@ using UnityEngine;
 
 public class TargetController : MonoBehaviour
 {
-    
-
     // Node ฐüทร 
     public GameObject way;
     public Transform[] nodes; 
     public List<Vector3> nodesPositions = new List<Vector3>();
-
-
-    private void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
 
     public void moveTargetAsync(Transform startPoint, Transform targetPoint, GameObject selectedway, bool Reverse)
     {
