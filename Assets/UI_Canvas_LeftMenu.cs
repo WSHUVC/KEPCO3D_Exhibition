@@ -7,7 +7,7 @@ namespace WSH.UI
 {
     public class UI_Canvas_LeftMenu : CanvasBase
     {
-        UI_Panel_InfoTab panel_InfoTab;
+        UI_Panel_LeftMenu panel_InfoTab;
         public override void Initialize()
         {
             GetPanel(out panel_InfoTab);

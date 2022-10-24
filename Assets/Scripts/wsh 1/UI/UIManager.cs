@@ -11,7 +11,6 @@ namespace WSH.Core.Manager
     {
         Managers managers;
         public CanvasBase[] canvasis;
-        PanelBase[] panels;
         private void Awake()
         {
             var trashs = FindObjectsOfType<UIManager>();
@@ -28,14 +27,12 @@ namespace WSH.Core.Manager
 
             managers = FindObjectOfType<Managers>();
             canvasis = FindObjectsOfType<CanvasBase>();
-            panels = FindObjectsOfType<PanelBase>();
         }
 
         UI_Canvas_Idle canvas_Idle;
         UI_Canvas_TopBar canvas_TopBar;
         UI_Canvas_Bottom canvas_Bottom;
         UI_Canvas_Tabs canvas_Tabs;
-        public List<GameObject> allUI = new List<GameObject>();
         public void IdleOff()
         {
             Debug.Log($"{name}:IdleOff");
