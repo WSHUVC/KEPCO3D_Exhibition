@@ -24,7 +24,6 @@ namespace WSH.Core.Manager
                 }
                 return;
             }
-
             managers = FindObjectOfType<Managers>();
             canvasis = FindObjectsOfType<CanvasBase>();
         }

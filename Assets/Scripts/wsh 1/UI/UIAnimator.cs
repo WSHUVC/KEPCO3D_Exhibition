@@ -39,7 +39,6 @@ namespace WSH.UI
         float posProcess;
         float rotProcess;
         float sizeProcess;
-
         void CalculateProcess()
         {
             rect = GetComponent<RectTransform>();

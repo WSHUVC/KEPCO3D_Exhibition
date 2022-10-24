@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 using WSH.Core.Manager;
 using WSH.Util;
@@ -15,6 +17,10 @@ namespace WSH.UI
         Image image_GradiantBackground;
         [SerializeField]float timer = 0f;
         public float inputBlockWatingTime = 0f;
+        public PlayableDirector timeLines;
+        GameObject lights;
+        public PlayableDirector simulationSequence;
+
         public override void Initialize()
         {
             um = FindObjectOfType<UIManager>();
@@ -23,10 +29,35 @@ namespace WSH.UI
 
             button_IdleOff.onClick.AddListener(IdleOff);
             lights = GameObject.Find("@Lights");
-            timeLines = GameObject.Find("Timelines");
+            var sqs = FindObjectsOfType<PlayableDirector>();
+            timeLines = sqs.Where(s => s.gameObject.name == "Timelines").First();
+            simulationSequence = sqs.Where(s => s.gameObject.name == "SimulationTimeLine").First();
+            simulationSequence.gameObject.SetActive(false);
             OnClickedPlayOnButton();
         }
-        private void Update()
+        public enum SquenceType
+        {
+            Normal,
+            Simulation,
+        }
+        PlayableDirector currentSequence;
+        public void SequenceChange(SquenceType st)
+        {
+            if (currentSequence != null)
+                currentSequence.gameObject.SetActive(false);
+            switch (st)
+            {
+                case SquenceType.Normal:
+                    currentSequence = timeLines;
+                    timeLines.gameObject.SetActive(true);
+                    break;
+                case SquenceType.Simulation:
+                    currentSequence = simulationSequence;
+                    simulationSequence.gameObject.SetActive(true);
+                    break;
+            }
+        }
+       private void Update()
         {
             if (Input.GetMouseButton(0))
                 timer = 0f;
@@ -57,18 +88,16 @@ namespace WSH.UI
             um.IdleOn();
             OnClickedPlayOnButton();
         }
-        
-        private GameObject lights;
-        private GameObject timeLines;
+
         public void OnClickedPlayOffButton()
         {
             lights.SetActive(true);
-            timeLines.SetActive(false);
+            timeLines.gameObject.SetActive(false);
         }
         private void OnClickedPlayOnButton()
         {
             lights.SetActive(false);
-            timeLines.SetActive(true);
+            timeLines.gameObject.SetActive(true);
         }
     }
 }

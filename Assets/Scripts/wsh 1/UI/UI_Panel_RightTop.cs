@@ -46,6 +46,7 @@ namespace WSH.UI
         void OnClick_SimulationMode()
         {
             Debug.Log($"{button_SceneChange}:OnClick_SimulationMode");
+            GetCanvas<UI_Canvas_Idle>().SequenceChange(UI_Canvas_Idle.SquenceType.Simulation);
         }
 
         // UI_Panel_BottomButtons panel_BottomButtons;
