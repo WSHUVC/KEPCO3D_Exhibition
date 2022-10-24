@@ -6,6 +6,7 @@ using WSH.UI;
 using WSH.Core;
 using System.Linq;
 using UnityEngine.UI;
+using System;
 
 public class CM_CameraManager : MonoBehaviour
 {
@@ -34,37 +35,8 @@ public class CM_CameraManager : MonoBehaviour
     {
         if (instance != null) return;
         instance = this;
-
-        var panels = FindObjectOfType<UI_Panel_BottomButtons>().panel_PlaceAndSensors;
-
-        var right = FindObjectOfType<UI_Canvas_RightMenu>();
-        var left = FindObjectOfType<UI_Canvas_LeftMenu>();
-        for(int i = 0; i < panels.Length; ++i)
-        {
-            int index = i+1;
-            panels[i].button_Place.onClick.AddListener(()=>MoveToIndexPoint(index));
-
-            //int c = 1;
-            foreach(var sensor in panels[i].panel_PlaceSensorList.button_Sensors)
-            {
-                var button = sensor.GetComponent<Button>();
-                button.onClick.AddListener(()=>ZoomintoSensor(sensor.index));
-                button.onClick.AddListener(right.Active);
-                button.onClick.AddListener(left.Active);
-            }
-        }
-
-        //var manager = FindObjectOfType<Managers>();
-        //foreach(var f in manager.placeFlags)
-        //{
-        //    f.button_Flag.onClick.AddListener(() => MoveToIndexPoint(f.index));
-        //}
-
-        //foreach(var f in manager.sensorFlags)
-        //{
-        //    f.button_Flag.onClick.AddListener(() => ZoomintoSensor(f.index));
-        //}
     }
+
     public void MoveToIndexPoint(int index)
     {
         Debug.Log($"Move To {index} point");

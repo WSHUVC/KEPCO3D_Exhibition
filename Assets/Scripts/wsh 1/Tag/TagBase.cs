@@ -9,6 +9,7 @@ namespace WSH.UI
 {
     public class TagBase : MonoBehaviour
     {
+        public int index;
         public GameObject myFlag;
         public string customName
         {

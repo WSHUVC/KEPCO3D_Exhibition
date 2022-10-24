@@ -85,7 +85,7 @@ namespace WSH.UI
                 return false;
             }
 
-            var reload = load.Where(l => l.transform.parent == transform).ToList();
+            var reload = load.Where(l => l.transform.parent == transform || l.transform == transform).ToList();
             if(!uiElementsTable.ContainsKey(this))
                 uiElementsTable.Add(this, reload);
 

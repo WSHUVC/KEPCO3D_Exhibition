@@ -15,7 +15,6 @@ namespace WSH.UI
         protected UIManager um;
 
         public TagBase targetEntity;
-        public int index;
 
         public override void Initialize()
         {
@@ -60,11 +59,11 @@ namespace WSH.UI
             //    anim.Play();
             if(targetEntity is Tag_Place)
             {
-                FindObjectOfType<CM_CameraManager>().MoveToIndexPoint(index);
+                FindObjectOfType<CM_CameraManager>().MoveToIndexPoint(targetEntity.index);
             }
             else if(targetEntity is Tag_Sensor)
             {
-                FindObjectOfType<CM_CameraManager>().ZoomintoSensor(index);
+                FindObjectOfType<CM_CameraManager>().ZoomintoSensor(targetEntity.index);
             }
         }
         public override void Deactive()
