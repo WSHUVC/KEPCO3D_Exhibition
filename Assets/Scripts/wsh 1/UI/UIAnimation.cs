@@ -74,34 +74,42 @@ namespace WSH.UI
         float posProcess;
         float rotProcess;
         float sizeProcess;
-        
+
         public void Play(bool rewind = false)
+        {
+            if (anim != null)
+                StopCoroutine(anim);
+
+            if (rewind)
+                Rewind();
+            else
+                Play();
+        }
+        void ResetProcess()
         {
             posProcess = 0f;
             rotProcess = 0f;
             sizeProcess = 0f;
             CalculateProcess();
-
-            if (rewind)
-            {
-                Rewind();
-                return;
-            }
-
+        }
+        Coroutine anim;
+        void Play()
+        {
+            ResetProcess();
             var ef = GetEasingFunction(normalEasingType);
             if (AutoSpeed)
-                StartCoroutine(Animation_AutoSpeed(ef));
+                anim = StartCoroutine(Animation_AutoSpeed(ef));
             else
-                StartCoroutine(Animation(ef));
+                anim = StartCoroutine(Animation(ef));
         }
         void Rewind()
         {
+            ResetProcess();
             var ef = GetEasingFunction(rewindEasingType);
-            
             if (AutoSpeed)
-                StartCoroutine(RewindAnimation_AutoSpeed(ef));
+                anim = StartCoroutine(RewindAnimation_AutoSpeed(ef));
             else
-                StartCoroutine(RewindAnimation(ef));
+                anim = StartCoroutine(RewindAnimation(ef));
         }
 
         public void OnComplete(UIAnimationEndEvent endEvent)

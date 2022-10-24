@@ -1,28 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 using TMPro;
-using System;
-using WSH.Core.Util;
-using WSH.Core;
 using WSH.Core.Manager;
+using Debug = WSH.Util.Debug;
 
 namespace WSH.UI
 {
     public class UI_Flag : UIBase
     {
         protected Transform cam;
-        protected TMP_Text text_Info;
-        public Button button_MoveToPoint;
+        protected TextMeshProUGUI text_Name;
+        public Button button_Flag;
         protected UIAnimation[] anims;
         protected UIManager um;
 
         public TagBase targetEntity;
         public int index;
 
-        protected override void Awake()
+        public override void Initialize()
         {
             cam = Camera.main.transform;
         }
@@ -42,21 +37,27 @@ namespace WSH.UI
             um = FindObjectOfType<UIManager>();
             transform.SetParent(target.transform);
             transform.localPosition = Vector3.zero;
-
-            if (target is Tag_Place)
+            if (targetEntity is Tag_Place)
             {
-                text_Info = GetComponentInChildren<TextMeshProUGUI>();
-                text_Info.SetText(target.customName);
+                GetUIElement("Text_Name", out text_Name);
+                text_Name.SetText(targetEntity.customName);
             }
-            button_MoveToPoint = GetComponentInChildren<Button>();
-            button_MoveToPoint.onClick.AddListener(Active);
+            GetUIElement("Button_Flag", out button_Flag);
+            button_Flag.onClick.AddListener(Active);
+            if (targetEntity is Tag_Sensor)
+            {
+                var right = GetCanvas<UI_Canvas_RightMenu>();
+                var left = GetCanvas<UI_Canvas_LeftMenu>();
+                button_Flag.onClick.AddListener(right.Active);
+                button_Flag.onClick.AddListener(left.Active);
+            }
         }
 
         public override void Active()
         {
-            foreach (var anim in anims)
-                anim.Play();
-
+            Debug.Log($"{name}:Active");
+            //foreach (var anim in anims)
+            //    anim.Play();
             if(targetEntity is Tag_Place)
             {
                 FindObjectOfType<CM_CameraManager>().MoveToIndexPoint(index);
@@ -68,8 +69,8 @@ namespace WSH.UI
         }
         public override void Deactive()
         {
-            foreach (var anim in anims)
-                anim.Play(false);
+            //foreach (var anim in anims)
+            //    anim.Play(false);
         }
     }
 }

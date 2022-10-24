@@ -32,7 +32,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2385874506188155751}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -118,18 +118,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3522039818640932215}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5483577831672951582}
-  m_RootOrder: 0
+  m_Father: {fileID: 2385874506188155751}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 174, y: 40}
+  m_AnchoredPosition: {x: 0, y: 149.09991}
+  m_SizeDelta: {x: -3472.4639, y: -2059.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2382993269155508880
 CanvasRenderer:
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 7077397278338509420}
   - component: {fileID: 3401555658643874583}
   m_Layer: 5
-  m_Name: Image_Flag
+  m_Name: Button_Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,14 +275,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8891400878785832221}
+  m_Children: []
   m_Father: {fileID: 2385874506188155751}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 157.5}
+  m_AnchoredPosition: {x: 0, y: 149.1}
   m_SizeDelta: {x: 193.536, y: 60.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &435670748477090916
@@ -306,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -559,6 +558,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1784238225103139026}
+  - {fileID: 8891400878785832221}
   - {fileID: 5483577831672951582}
   - {fileID: 8345698467315972531}
   m_Father: {fileID: 0}
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8805818482420396021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,4 +657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24b39379a483d045af9622b74ffe1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button_Flag: {fileID: 0}
   targetEntity: {fileID: 0}
+  index: 0

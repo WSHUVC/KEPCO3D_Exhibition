@@ -13,8 +13,7 @@ namespace WSH.UI
 
         public override void Initialize()
         {
-            base.Initialize();
-            TryGetPanel("Panel_TopBar", out panel_TopBar);
+            GetPanel(out panel_TopBar);
         }
 
         public override void Active()

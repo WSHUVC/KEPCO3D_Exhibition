@@ -2,30 +2,36 @@ using UnityEngine;
 using Debug = WSH.Util.Debug;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using WSH.Core.Manager;
 
 namespace WSH.UI
 {
     public class UI_Panel_BottomButtons : PanelBase
     {
         public Button[] placeButtons;
+        public UI_Panel_PlaceAndSensor[] panel_PlaceAndSensors;
+
         public override void Initialize()
         {
-            base.Initialize();
             placeButtons = GetComponentsInChildren<Button>();
                 
             panel_PlaceAndSensors = GetComponentsInChildren<UI_Panel_PlaceAndSensor>();
-        }
-
-        public override void Active()
-        {
-            base.Active();
             foreach(var p in panel_PlaceAndSensors)
             {
-                p.Active();
+                p.panel_Parent = this;
             }
         }
 
-        public UI_Panel_PlaceAndSensor[] panel_PlaceAndSensors;
+        UI_Panel_PlaceAndSensor prev;
+        public void OtherPanelRewind(UI_Panel_PlaceAndSensor currentPanel)
+        {
+            if (prev != null)
+                prev.Deactive();
+            prev = currentPanel;
+            GetCanvas<UI_Canvas_LeftMenu>().Deactive();
+            GetCanvas<UI_Canvas_RightMenu>().Deactive();
+        }
+
         public override void Deactive()
         {
             base.Deactive();
@@ -34,6 +40,5 @@ namespace WSH.UI
                 p.Deactive();
             }
         }
-
     }
 }

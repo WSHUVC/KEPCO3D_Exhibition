@@ -5,10 +5,14 @@ using WSH.Core;
 
 namespace WSH.UI
 {
-    public abstract class UIBase : MonoBehaviour
+    /// <summary>
+    /// for Runtime UI.
+    /// </summary>
+    public class UIBase : WIBehaviour
     {
-        protected virtual void Awake() { }
-        public virtual void Active() { }
-        public virtual void Deactive() { }
+        protected virtual void Awake()
+        {
+            Initialize();
+        }
     }
 }

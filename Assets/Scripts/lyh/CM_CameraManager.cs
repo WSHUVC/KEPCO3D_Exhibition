@@ -37,6 +37,8 @@ public class CM_CameraManager : MonoBehaviour
 
         var panels = FindObjectOfType<UI_Panel_BottomButtons>().panel_PlaceAndSensors;
 
+        var right = FindObjectOfType<UI_Canvas_RightMenu>();
+        var left = FindObjectOfType<UI_Canvas_LeftMenu>();
         for(int i = 0; i < panels.Length; ++i)
         {
             int index = i+1;
@@ -45,20 +47,23 @@ public class CM_CameraManager : MonoBehaviour
             //int c = 1;
             foreach(var sensor in panels[i].panel_PlaceSensorList.button_Sensors)
             {
-                sensor.GetComponent<Button>().onClick.AddListener(()=>ZoomintoSensor(sensor.index));
+                var button = sensor.GetComponent<Button>();
+                button.onClick.AddListener(()=>ZoomintoSensor(sensor.index));
+                button.onClick.AddListener(right.Active);
+                button.onClick.AddListener(left.Active);
             }
         }
 
-        var manager = FindObjectOfType<Managers>();
-        foreach(var f in manager.placeFlags)
-        {
-            f.button_MoveToPoint.onClick.AddListener(() => MoveToIndexPoint(f.index));
-        }
+        //var manager = FindObjectOfType<Managers>();
+        //foreach(var f in manager.placeFlags)
+        //{
+        //    f.button_Flag.onClick.AddListener(() => MoveToIndexPoint(f.index));
+        //}
 
-        foreach(var f in manager.sensorFlags)
-        {
-            f.button_MoveToPoint.onClick.AddListener(() => ZoomintoSensor(f.index));
-        }
+        //foreach(var f in manager.sensorFlags)
+        //{
+        //    f.button_Flag.onClick.AddListener(() => ZoomintoSensor(f.index));
+        //}
     }
     public void MoveToIndexPoint(int index)
     {

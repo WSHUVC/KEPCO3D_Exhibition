@@ -9,8 +9,7 @@ namespace WSH.UI
         [SerializeField] UI_Panel_BottomButtons panel_BottomButtons;
         public override void Initialize()
         {
-            base.Initialize();
-            TryGetPanel("Panel_BottomButtons", out panel_BottomButtons);
+            GetPanel(out panel_BottomButtons);
         }
         public override void Active()
         {

@@ -17,9 +17,8 @@ namespace WSH.UI
         public float inputBlockWatingTime = 0f;
         public override void Initialize()
         {
-            base.Initialize();
             um = FindObjectOfType<UIManager>();
-            TryGetUIElement("Button_IdleOff", out button_IdleOff);
+            GetUIElement("Button_IdleOff", out button_IdleOff);
             button_IdleOff.onClick.AddListener(IdleOff);
             lights = GameObject.Find("@Lights");
             timeLines = GameObject.Find("Timelines");

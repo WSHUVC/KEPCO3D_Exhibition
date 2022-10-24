@@ -113,7 +113,6 @@ namespace WSH.Core
         public List<UI_Flag> sensorFlags = new List<UI_Flag>();
         void Flagging(TagBase[] points, UI_Flag prefab)
         {
-            int index = 1;
             foreach (var p in points)
             {
                 var flag = Instantiate(prefab);
@@ -160,6 +159,9 @@ namespace WSH.Core
 
         private void Awake()
         {
+            FlagCleaning();
+            PlaceFlagging();
+            SensorFlagging();
             DeactivePlaceFlag();
             DeactiveSensorFlag();
         }
