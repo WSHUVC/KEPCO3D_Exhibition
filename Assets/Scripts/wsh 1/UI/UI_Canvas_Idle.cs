@@ -49,13 +49,12 @@ namespace WSH.UI
             {
                 case SquenceType.Normal:
                     currentSequence = timeLines;
-                    timeLines.gameObject.SetActive(true);
                     break;
                 case SquenceType.Simulation:
                     currentSequence = simulationSequence;
-                    simulationSequence.gameObject.SetActive(true);
                     break;
             }
+            currentSequence.gameObject.SetActive(true);
         }
        private void Update()
         {

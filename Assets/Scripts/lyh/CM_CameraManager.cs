@@ -11,12 +11,8 @@ using System;
 public class CM_CameraManager : MonoBehaviour
 {
     // TargetController에  이동시킬 way의 startpoint, endPoint, way dierect 를 정해줌
-
     public int currentWayPoint = 0;
-
-
     public CinemachineVirtualCamera TargetTracking_Camera;
-
     public TargetController targetController;
     public static CM_CameraManager instance;
     public Transform[] wayPoints;
@@ -25,8 +21,8 @@ public class CM_CameraManager : MonoBehaviour
     // Paths
     public CinemachineSmoothPath MainTrack;
     public CinemachineSmoothPath FirstZoneTrack;
-    public CinemachineSmoothPath SecondZoneTrack;
-    public CinemachineSmoothPath ThirdZoneTrack;
+    //public CinemachineSmoothPath SecondZoneTrack;
+    //public CinemachineSmoothPath ThirdZoneTrack;
 
     // Sensors
     public Transform[] sensors = new Transform[12];
@@ -43,66 +39,6 @@ public class CM_CameraManager : MonoBehaviour
         TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
         MoveCameraTo(index);
     }
-
-    public void moveTopToFristZone()
-    {
-        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
-        MoveCameraTo(1);
-    }
-
-    public void moveTopToSecondZone()
-    {
-        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
-        MoveCameraTo(2);
-    }
-
-
-    public void moveTopToThirdZone()
-    {
-        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
-        MoveCameraTo(3);
-    }
-
-    public void moveTopToFourthZone()
-    {
-        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
-        MoveCameraTo(4);
-    }
-
-
-
-    public void MoveOrder(int finalDestination)
-    {
-        Graph graph = new Graph();
-        int flag = currentWayPoint;
-        bool reversed;
-        int way = 0;
-
-        // 최종 목적지까지 경로 생성
-        graph.BFS(currentWayPoint, finalDestination);
-        graph.destinations.ForEach(destination =>
-        {
-            // Todo -> moveTarget 실행 
-
-            // 방향 선정 (이동할 destnation가 현재 flag보다 크거나 같다면 순방향 아니면 역방향) 
-            reversed = destination >= flag ? false : true;
-
-
-            // way 선정 가는 방향이 길 번호
-            way = destination;
-
-            // 한칸 이동 !!
-            Debug.Log($"{flag}로부터{destination}로 {way}번 길을 {!reversed} 방향으로 간다.");
-            targetController.moveTargetAsync(wayPoints[flag], wayPoints[destination], ways[way], reversed);
-            flag = destination;
-
-        });
-        currentWayPoint = finalDestination;
-
-    }
-
-
-
     IEnumerator MoveOrderTo(int finalDestination)
     {
         Graph graph = new Graph();
@@ -118,10 +54,8 @@ public class CM_CameraManager : MonoBehaviour
             //방향선정
             reversed = graph.destinations[i] >= flag ? false : true;
             // way 선정 가는 방향이 길 번호
-
      
             way = graph.destinations[i] == 0 ? flag - 1: graph.destinations[i] - 1; 
-
 
             //Move
             Debug.Log($"WayPoint : {flag}로부터 Waypoint : {graph.destinations[i]}로 Way :{way}번 길을 {!reversed} 방향 시작 ");
@@ -134,23 +68,10 @@ public class CM_CameraManager : MonoBehaviour
         // 최종 목적지를 현재 포지션으로
         currentWayPoint = finalDestination;
     }
-
     public void MoveCameraTo(int viewPoint)
     {
         StartCoroutine(MoveOrderTo(viewPoint));
-
     }
-
-
-
-
-    public void ChangeDollyTrack()
-    {
-        TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = FirstZoneTrack;
-    }
-
-
-
     public void  ZoomintoSensor(int sensorNumber)
     {
         if (sensorNumber < 0)
@@ -180,5 +101,37 @@ public class CM_CameraManager : MonoBehaviour
         // Target을 센서 위치로 이동
         targetController.moveToSensor(sensors[sensorNumber]);
     }
+    //public void MoveOrder(int finalDestination)
+    //{
+    //    Graph graph = new Graph();
+    //    int flag = currentWayPoint;
+    //    bool reversed;
+    //    int way = 0;
+
+    //    // 최종 목적지까지 경로 생성
+    //    graph.BFS(currentWayPoint, finalDestination);
+    //    graph.destinations.ForEach(destination =>
+    //    {
+    //        // Todo -> moveTarget 실행 
+
+    //        // 방향 선정 (이동할 destnation가 현재 flag보다 크거나 같다면 순방향 아니면 역방향) 
+    //        reversed = destination >= flag ? false : true;
+
+
+    //        // way 선정 가는 방향이 길 번호
+    //        way = destination;
+
+    //        // 한칸 이동 !!
+    //        Debug.Log($"{flag}로부터{destination}로 {way}번 길을 {!reversed} 방향으로 간다.");
+    //        targetController.moveTargetAsync(wayPoints[flag], wayPoints[destination], ways[way], reversed);
+    //        flag = destination;
+
+    //    });
+    //    currentWayPoint = finalDestination;
+    //}
+    //public void ChangeDollyTrack()
+    //{
+    //    TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = FirstZoneTrack;
+    //}
 }
 

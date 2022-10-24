@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,8 +30,16 @@ namespace WSH.UI
             button_SceneChange.onClick.AddListener(OnClick_SceneChange);
             button_SimulationMode.onClick.AddListener(OnClick_SimulationMode);
             button_Sensor.onClick.AddListener(OnClick_Sensor);
-            //GetPanel(out panel_BottomButtons); 
-                //UIManager.instance.GetCanvas<UI_Canvas_Bottom>().GetPanel<UI_Panel_BottomButtons>();
+            StartCoroutine(Timer());
+        }
+
+        IEnumerator Timer()
+        {
+            while (true)
+            {
+                text_Date.SetText(DateTime.Now.ToString());
+                yield return new WaitForSecondsRealtime(1f);
+            }
         }
 
         void OnClick_Home()
