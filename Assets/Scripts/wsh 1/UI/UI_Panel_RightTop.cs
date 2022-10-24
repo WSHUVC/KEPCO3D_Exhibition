@@ -35,6 +35,7 @@ namespace WSH.UI
         void OnClick_Home()
         {
             Debug.Log($"{button_Home}:OnClick_Home");
+            GetCanvas<UI_Canvas_Idle>().IdleOn();
         }
 
         void OnClick_SceneChange()

@@ -21,7 +21,7 @@ namespace WSH.UI
         {
             base.Deactive();
             panel_BottomButtons.Deactive();
-            PlayAnimation(panel_BottomButtons, true);
+            RewindAnimation(panel_BottomButtons);
         }
     }
 }

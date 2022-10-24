@@ -7,7 +7,7 @@ namespace WSH.UI
 {
     public class UI_Panel_TopBar : PanelBase
     {
-        TMP_Text text_Title;
+        TextMeshProUGUI text_Title;
         UI_Panel_RightTop panel_LeftTop;
     }
 }

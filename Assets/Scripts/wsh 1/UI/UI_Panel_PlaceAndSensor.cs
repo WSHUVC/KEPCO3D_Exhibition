@@ -24,7 +24,7 @@ namespace WSH.UI
 
         public override void Deactive()
         {
-            panel_PlaceSensorList.PlayAnimation(true);
+            panel_PlaceSensorList.RewindAnimation();
         }
 
         void OnClick_Place()

@@ -24,7 +24,7 @@ namespace WSH.UI
         public override void Deactive()
         {
             base.Deactive();
-            PlayAnimation(panel_TopBar, true);
+            RewindAnimation(panel_TopBar);
         }
     }
 }

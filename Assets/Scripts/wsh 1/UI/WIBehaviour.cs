@@ -113,14 +113,22 @@ namespace WSH.UI
         public virtual void Initialize() { }
         protected virtual void OnDisable() { }
 
-        public virtual void PlayAnimation(WIBehaviour animator, bool rewind = false)
+        public virtual void RewindAnimation(WIBehaviour animator)
         {
-            animator.GetComponent<UIAnimation>().Play(rewind);
+            animator.GetComponent<UIAnimator>().Rewind();
+        }
+        public virtual void PlayAnimation(WIBehaviour animator)
+        {
+            animator.GetComponent<UIAnimator>().Play();
         }
 
-        public virtual void PlayAnimation(bool rewind = false)
+        public virtual void RewindAnimation()
         {
-            GetComponent<UIAnimation>().Play(rewind);
+            GetComponent<UIAnimator>().Rewind();
+        }
+        public virtual void PlayAnimation()
+        {
+            GetComponent<UIAnimator>().Play();
         }
     }
 }

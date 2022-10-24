@@ -12,13 +12,15 @@ namespace WSH.UI
     {
         UIManager um;
         public Button button_IdleOff;
-
+        Image image_GradiantBackground;
         [SerializeField]float timer = 0f;
         public float inputBlockWatingTime = 0f;
         public override void Initialize()
         {
             um = FindObjectOfType<UIManager>();
             GetUIElement("Button_IdleOff", out button_IdleOff);
+            GetUIElement("Image_GradiantBackground",out image_GradiantBackground);
+
             button_IdleOff.onClick.AddListener(IdleOff);
             lights = GameObject.Find("@Lights");
             timeLines = GameObject.Find("Timelines");
@@ -42,6 +44,7 @@ namespace WSH.UI
         public void IdleOff()
         {
             Debug.Log($"{name}:IdleOff");
+            image_GradiantBackground.enabled = true;
             button_IdleOff.gameObject.SetActive(false);
             StartCoroutine(IdleChanger());
             OnClickedPlayOffButton();
@@ -49,24 +52,22 @@ namespace WSH.UI
         public void IdleOn()
         {
             Debug.Log($"{name}:IdleOn");
+            image_GradiantBackground.enabled = false;
             button_IdleOff.gameObject.SetActive(true);
             um.IdleOn();
             OnClickedPlayOnButton();
         }
         
-        private GameObject fader;
         private GameObject lights;
         private GameObject timeLines;
         public void OnClickedPlayOffButton()
         {
             lights.SetActive(true);
-            //fader.SetActive(false);
             timeLines.SetActive(false);
         }
         private void OnClickedPlayOnButton()
         {
             lights.SetActive(false);
-            //fader.SetActive(true);
             timeLines.SetActive(true);
         }
     }
