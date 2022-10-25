@@ -89,11 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 2, y: 34}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 2, y: 34}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325380070756091
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,11 +240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 0, y: 0}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 0, y: 0}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325380312853578
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,11 +333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 0, y: 0}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 0, y: 0}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325380396216804
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,11 +425,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 2, y: 34}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 2, y: 34}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325380541006000
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,11 +576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 0, y: 0}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 0, y: 0}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325380570289697
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,11 +801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 0, y: 0}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 0, y: 0}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325380709013391
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,11 +903,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 26, y: 26}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 26, y: 26}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325380866062827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,11 +995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 27.5, y: 27.5}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 27.5, y: 27.5}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325381401059945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,11 +1146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 0, y: 0}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 0, y: 0}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325381525578057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1163,7 @@ GameObject:
   - component: {fileID: 5841325381525578058}
   - component: {fileID: 5841325381525578059}
   - component: {fileID: 1706612918}
+  - component: {fileID: 1210972896565792708}
   m_Layer: 5
   m_Name: UI_Item_EventHistory
   m_TagString: Untagged
@@ -1269,11 +1252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 599, y: 66}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 599, y: 66}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!114 &5841325381525578059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,6 +1297,50 @@ MonoBehaviour:
   currentFontSize: 20
   fontSizeMax: 20
   set: 0
+--- !u!114 &1210972896565792708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5841325381525578057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 5841325381525578061}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5841325381548413362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,11 +1430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 2, y: 34}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 2, y: 34}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325381671680882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,11 +1559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 2, y: 34}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 2, y: 34}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325381691387762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,11 +1688,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 0, y: 0}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 0, y: 0}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325381744414639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,11 +1817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6918037ae81d24dacd58e8cc5326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectSize: {x: 2, y: 34}
-  rectScale: {x: 1, y: 1, z: 1}
-  prevSize: {x: 2, y: 34}
+  originSize: {x: 0, y: 0}
+  currentSize: {x: 0, y: 0}
   sizeRatio: 1
-  originChange: 0
 --- !u!1 &5841325381875712775
 GameObject:
   m_ObjectHideFlags: 0

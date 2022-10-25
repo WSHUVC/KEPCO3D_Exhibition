@@ -30,6 +30,8 @@ namespace WSH.UI
             button_SceneChange.onClick.AddListener(OnClick_SceneChange);
             button_SimulationMode.onClick.AddListener(OnClick_SimulationMode);
             button_Sensor.onClick.AddListener(OnClick_Sensor);
+            button_Sensor.gameObject.SetActive(false);
+            button_SceneChange.gameObject.SetActive(false);
             StartCoroutine(Timer());
         }
 
@@ -46,8 +48,8 @@ namespace WSH.UI
         {
             Debug.Log($"{button_Home}:OnClick_Home");
             GetCanvas<UI_Canvas_Idle>().IdleOn();
-            button_Sensor.gameObject.SetActive(true);
-            button_SceneChange.gameObject.SetActive(true);
+            //button_Sensor.gameObject.SetActive(true);
+            //button_SceneChange.gameObject.SetActive(true);
             button_SimulationMode.gameObject.SetActive(true);
         }
 
@@ -63,6 +65,7 @@ namespace WSH.UI
             GetCanvas<UI_Canvas_LeftMenu>().Deactive();
             GetCanvas<UI_Canvas_RightMenu>().Deactive();
             GetCanvas<UI_Canvas_Idle>().SequenceChange(UI_Canvas_Idle.SquenceType.Simulation);
+            FindObjectOfType<UIManager>().OutlineOff();
             button_Sensor.gameObject.SetActive(false);
             button_SceneChange.gameObject.SetActive(false);
             button_SimulationMode.gameObject.SetActive(false);

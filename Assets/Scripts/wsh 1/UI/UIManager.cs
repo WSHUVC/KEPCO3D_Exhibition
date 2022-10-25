@@ -79,6 +79,7 @@ namespace WSH.Core.Manager
             //canvas_Tabs.Active();
             canvas_TopBar.Active();
             canvas_Bottom.Active();
+
             managers.ActivePlaceFlag();
         }
 
@@ -93,6 +94,7 @@ namespace WSH.Core.Manager
             canvas_TopBar.Deactive();
             canvas_Bottom.Deactive();
             canvas_Tabs.Deactive();
+            OutlineOff();
             managers.DeactivePlaceFlag();
             managers.DeactiveSensorFlag();
         }
