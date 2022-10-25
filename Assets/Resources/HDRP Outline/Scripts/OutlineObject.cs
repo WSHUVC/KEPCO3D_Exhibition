@@ -133,8 +133,8 @@ namespace Knife.HDRPOutline.Core
         {
             var um = FindObjectOfType<UIManager>();
             material = um.outlineMaterial;
-            if(!um.outlineObjects.Contains(gameObject))
-                um.outlineObjects.Add(gameObject);
+            if(!um.outlineObjects.Contains(this))
+                um.outlineObjects.Add(this);
             um.outlineObjects = um.outlineObjects.Where(o => o != null).ToList();
             attachedRenderer = GetComponent<Renderer>();
             var meshFilter = GetComponent<MeshFilter>();

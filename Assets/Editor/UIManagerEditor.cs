@@ -21,8 +21,10 @@ namespace WSH.UI.InspectorEditor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            if (GUILayout.Button("ResolutionPatch"))
-                um.ResolutionPatch();
+            if (GUILayout.Button("OutlineOff"))
+                um.OutlineOff();
+            if (GUILayout.Button("OutlineOn"))
+                um.OutlineOn();
         }
     }
 }

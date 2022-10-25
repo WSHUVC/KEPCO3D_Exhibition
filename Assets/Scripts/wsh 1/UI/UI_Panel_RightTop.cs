@@ -46,6 +46,9 @@ namespace WSH.UI
         {
             Debug.Log($"{button_Home}:OnClick_Home");
             GetCanvas<UI_Canvas_Idle>().IdleOn();
+            button_Sensor.gameObject.SetActive(true);
+            button_SceneChange.gameObject.SetActive(true);
+            button_SimulationMode.gameObject.SetActive(true);
         }
 
         void OnClick_SceneChange()

@@ -32,7 +32,6 @@ namespace WSH.UI
             {
                 if (tagMembers.Contains(sensors[i]))
                 {
-                    Debug.Log(i);
                     sensors[i].index = i;
                     continue;
                 }

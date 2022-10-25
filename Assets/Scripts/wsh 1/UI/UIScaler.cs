@@ -15,6 +15,7 @@ namespace WSH.UI
         [HideInInspector]public float sizeRatio;
         public void SetScalePerRatio(float ratio)
         {
+            return;
             rect = GetComponent<RectTransform>();
             //LoadPivot();
             sizeRatio = ratio;
@@ -38,6 +39,7 @@ namespace WSH.UI
 
         public void OriginSizeChange()
         {
+            return;
             rect = GetComponent<RectTransform>();
             //SavePivot();
             originSize = rect.sizeDelta;

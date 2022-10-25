@@ -1,5 +1,7 @@
+using Knife.HDRPOutline.Core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
@@ -13,17 +15,38 @@ namespace WSH.Core.Manager
         public CanvasBase[] canvasis;
         public int highLightMaterialIndex;
 
-        Resolution prev;
         Managers managers;
         WIBehaviour[] allUIs;
         UI_Canvas_Idle canvas_Idle;
         UI_Canvas_Tabs canvas_Tabs;
         UI_Canvas_TopBar canvas_TopBar;
         UI_Canvas_Bottom canvas_Bottom;
-        public Material[] highLightMaterials;
 
+        public void OutlineOff()
+        {
+            if (outlineObjects.Count == 0)
+                outlineObjects = FindObjectsOfType<OutlineObject>().ToList();
+
+            foreach(var o in outlineObjects)
+            {
+                o.enabled = false;
+            }
+        }
+
+        public void OutlineOn()
+        {
+            if (outlineObjects.Count == 0)
+                outlineObjects = FindObjectsOfType<OutlineObject>().ToList();
+
+            foreach (var o in outlineObjects)
+            {
+                o.enabled = true;
+            }
+        }
+
+        public Material[] highLightMaterials;
         public Material outlineMaterial;
-        public List<GameObject> outlineObjects = new List<GameObject>();
+        public List<OutlineObject> outlineObjects = new List<OutlineObject>();
         public Color outlineColor;
         public Volume outlineOption;
 
@@ -48,29 +71,6 @@ namespace WSH.Core.Manager
             }
             managers = FindObjectOfType<Managers>();
             canvasis = FindObjectsOfType<CanvasBase>();
-        }
-       
-        public void ResolutionPatch()
-        {
-            return;//사용금지. 수정중
-            var resol = Screen.currentResolution;
-            var xratio = prev.width / resol.width;
-            var yratio = prev.height / resol.height;
-            var uis = Resources.FindObjectsOfTypeAll<RectTransform>();
-            Debug.Log($"{resol.width}*{resol.height}");
-            foreach (var c in uis)
-            {
-                var scaler = c.GetComponent<UIScaler>();
-                if (scaler == null)
-                    continue;
-                var rect = c.GetComponent<RectTransform>();
-                var size = rect.sizeDelta;
-                size.x = size.x * xratio;
-                size.y = size.y * yratio;
-                rect.sizeDelta = size;
-                scaler.OriginSizeChange();
-            }
-            prev = resol;
         }
 
         public void IdleOff()

@@ -79,9 +79,9 @@ namespace WSH.UI
                     }
                 }
             }
-            childElementTable.Add(this, new Dictionary<string, List<UIBehaviour>>());
-            var childs = gameObject.GetComponentsInChildren<UIBehaviour>()
-                .Where(c => c.transform.parent == transform || c.transform == transform).ToList();
+            if(!childElementTable.ContainsKey(this))
+                childElementTable.Add(this, new Dictionary<string, List<UIBehaviour>>());
+            var childs = gameObject.GetComponentsInChildren<UIBehaviour>().ToList();
             foreach (var c in childs)
             {
                 var childName = c.gameObject.name;
