@@ -28,6 +28,8 @@ namespace WSH.UI
             if (prev != null)
                 prev.Deactive();
             prev = currentPanel;
+            if (prev.panel_PlaceSensorList.currentSensor != null)
+                prev.panel_PlaceSensorList.currentSensor.DeactiveOutline();
             GetCanvas<UI_Canvas_LeftMenu>().Deactive();
             GetCanvas<UI_Canvas_RightMenu>().Deactive();
         }

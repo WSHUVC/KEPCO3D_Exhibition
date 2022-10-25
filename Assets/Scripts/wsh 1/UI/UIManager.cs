@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using WSH.UI;
 using Debug = WSH.Util.Debug;
 
@@ -9,10 +10,32 @@ namespace WSH.Core.Manager
 {
     public class UIManager : MonoBehaviour
     {
-        Managers managers;
         public CanvasBase[] canvasis;
+        public int highLightMaterialIndex;
+
+        Resolution prev;
+        Managers managers;
+        WIBehaviour[] allUIs;
+        UI_Canvas_Idle canvas_Idle;
+        UI_Canvas_Tabs canvas_Tabs;
+        UI_Canvas_TopBar canvas_TopBar;
+        UI_Canvas_Bottom canvas_Bottom;
+        public Material[] highLightMaterials;
+
+        public Material outlineMaterial;
+        public List<GameObject> outlineObjects = new List<GameObject>();
+        public Color outlineColor;
+        public Volume outlineOption;
+
         private void Awake()
         {
+            var option = outlineOption.sharedProfile.components;
+            foreach(var o in option)
+            {
+                if (o.name.Equals("HDRPOutline"))
+                {
+                }
+            }
             var trashs = FindObjectsOfType<UIManager>();
             if (trashs.Length > 1)
             {
@@ -26,8 +49,7 @@ namespace WSH.Core.Manager
             managers = FindObjectOfType<Managers>();
             canvasis = FindObjectsOfType<CanvasBase>();
         }
-
-        Resolution prev;
+       
         public void ResolutionPatch()
         {
             return;//사용금지. 수정중
@@ -51,10 +73,6 @@ namespace WSH.Core.Manager
             prev = resol;
         }
 
-        UI_Canvas_Idle canvas_Idle;
-        UI_Canvas_TopBar canvas_TopBar;
-        UI_Canvas_Bottom canvas_Bottom;
-        UI_Canvas_Tabs canvas_Tabs;
         public void IdleOff()
         {
             Debug.Log($"{name}:IdleOff");
@@ -63,6 +81,12 @@ namespace WSH.Core.Manager
             canvas_Bottom.Active();
             managers.ActivePlaceFlag();
         }
+
+        public Material GetHighLightMaterial(UI_Flag flag)
+        {
+            return highLightMaterials[highLightMaterialIndex];
+        }
+
         public void IdleOn()
         {
             Debug.Log($"{name}:IdleOn");
@@ -72,7 +96,6 @@ namespace WSH.Core.Manager
             managers.DeactivePlaceFlag();
             managers.DeactiveSensorFlag();
         }
-        WIBehaviour[] allUIs;
         void Start()
         {
             allUIs = FindObjectsOfType<WIBehaviour>();

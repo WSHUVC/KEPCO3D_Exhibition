@@ -24,13 +24,11 @@ public class CM_CameraManager : MonoBehaviour
     //public CinemachineSmoothPath ThirdZoneTrack;
 
     // Sensors
-    public Transform[] sensors = new Transform[12];
+    public Tag_Sensor[] sensors;
 
-    public static CM_CameraManager instance;
     private void Awake()
     {
-        if (instance != null) return;
-        instance = this;
+        sensors = FindObjectOfType<Managers>().sensors;
     }
 
     public void MoveTo(int index)
@@ -70,9 +68,9 @@ public class CM_CameraManager : MonoBehaviour
     }
     public void ZoomintoSensor(int sensorNumber)
     {
-        if (sensorNumber < 0)
+        if (sensorNumber < 0 || sensors.Length <= sensorNumber)
             return;
-        // ZoomTrack 으로 변경
+        //ZoomTrack 으로 변경
         switch (sensorNumber)
         {
             case int n when (n < 4):
@@ -92,9 +90,9 @@ public class CM_CameraManager : MonoBehaviour
                 currentWayPoint = 3;
                 Debug.Log("ThirdZone Excute");
                 break;
-        }      
+        }
         // 3개중 하나 
         // Target을 센서 위치로 이동
-        targetController.moveToSensor(sensors[sensorNumber]);
+        targetController.transform.position = sensors[sensorNumber].transform.position;
     }
 }

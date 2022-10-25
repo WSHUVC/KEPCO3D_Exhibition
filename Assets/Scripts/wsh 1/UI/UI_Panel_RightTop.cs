@@ -57,7 +57,12 @@ namespace WSH.UI
         {
             Debug.Log($"{button_SceneChange}:OnClick_SimulationMode");
             GetCanvas<UI_Canvas_Bottom>().Deactive();
+            GetCanvas<UI_Canvas_LeftMenu>().Deactive();
+            GetCanvas<UI_Canvas_RightMenu>().Deactive();
             GetCanvas<UI_Canvas_Idle>().SequenceChange(UI_Canvas_Idle.SquenceType.Simulation);
+            button_Sensor.gameObject.SetActive(false);
+            button_SceneChange.gameObject.SetActive(false);
+            button_SimulationMode.gameObject.SetActive(false);
         }
 
         // UI_Panel_BottomButtons panel_BottomButtons;
