@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
@@ -15,17 +16,20 @@ namespace WSH.UI
         UIManager um;
         public Button button_IdleOff;
         Image image_GradiantBackground;
+        GameObject lights;
         [SerializeField]float timer = 0f;
         public float inputBlockWatingTime = 0f;
-        public PlayableDirector timeLines;
-        GameObject lights;
-        public PlayableDirector simulationSequence;
+        PlayableDirector timeLines;
+        PlayableDirector simulationSequence;
+
+        TextMeshProUGUI text_Welcome;
 
         public override void Initialize()
         {
             um = FindObjectOfType<UIManager>();
             GetUIElement("Button_IdleOff", out button_IdleOff);
             GetUIElement("Image_GradiantBackground",out image_GradiantBackground);
+            GetUIElement("Text_Welcome", out text_Welcome);
 
             button_IdleOff.onClick.AddListener(IdleOff);
             lights = GameObject.Find("@Lights");
@@ -56,7 +60,7 @@ namespace WSH.UI
             }
             currentSequence.gameObject.SetActive(true);
         }
-       private void Update()
+        private void Update()
         {
             if (Input.GetMouseButton(0))
                 timer = 0f;
@@ -76,6 +80,7 @@ namespace WSH.UI
             Debug.Log($"{name}:IdleOff");
             image_GradiantBackground.enabled = true;
             button_IdleOff.gameObject.SetActive(false);
+            PlayAnimation(text_Welcome);
             StartCoroutine(IdleChanger());
             OnClickedPlayOffButton();
         }
@@ -85,6 +90,10 @@ namespace WSH.UI
             image_GradiantBackground.enabled = false;
             button_IdleOff.gameObject.SetActive(true);
             um.IdleOn();
+            RewindAnimation(text_Welcome);
+            GetCanvas<UI_Canvas_Bottom>().Deactive();
+            GetCanvas<UI_Canvas_LeftMenu>().Deactive();
+            GetCanvas<UI_Canvas_RightMenu>().Deactive();
             OnClickedPlayOnButton();
         }
 
@@ -96,7 +105,7 @@ namespace WSH.UI
         private void OnClickedPlayOnButton()
         {
             lights.SetActive(false);
-            timeLines.gameObject.SetActive(true);
+            SequenceChange(SquenceType.Normal);
         }
     }
 }

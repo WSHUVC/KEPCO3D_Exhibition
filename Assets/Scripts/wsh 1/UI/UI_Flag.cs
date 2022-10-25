@@ -45,11 +45,18 @@ namespace WSH.UI
             button_Flag.onClick.AddListener(Active);
             if (targetEntity is Tag_Sensor)
             {
-                var right = GetCanvas<UI_Canvas_RightMenu>();
                 var left = GetCanvas<UI_Canvas_LeftMenu>();
-                button_Flag.onClick.AddListener(right.Active);
+                var right = GetCanvas<UI_Canvas_RightMenu>();
                 button_Flag.onClick.AddListener(left.Active);
+                button_Flag.onClick.AddListener(right.Active);
             }
+        }
+
+        public Material mat_Hologream;
+        public Material mat_Outline;
+        void HighLightTarget()
+        {
+
         }
 
         public override void Active()
@@ -59,17 +66,12 @@ namespace WSH.UI
             //    anim.Play();
             if(targetEntity is Tag_Place)
             {
-                FindObjectOfType<CM_CameraManager>().MoveToIndexPoint(targetEntity.index);
+                FindObjectOfType<CM_CameraManager>().MoveTo(targetEntity.index);
             }
             else if(targetEntity is Tag_Sensor)
             {
                 FindObjectOfType<CM_CameraManager>().ZoomintoSensor(targetEntity.index);
             }
-        }
-        public override void Deactive()
-        {
-            //foreach (var anim in anims)
-            //    anim.Play(false);
         }
     }
 }

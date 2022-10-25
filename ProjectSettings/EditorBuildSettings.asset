@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/wsh/wsh_ 4.unity
-    guid: 96146c90f7a152e4e8e668b597a43c5f
+    path: Assets/Scenes/wsh/wsh_ 8.unity
+    guid: c7b8c28b58a6b6842bd6e0ab829c627d
   m_configObjects: {}

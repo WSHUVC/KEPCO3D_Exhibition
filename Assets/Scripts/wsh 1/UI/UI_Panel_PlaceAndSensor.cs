@@ -33,7 +33,7 @@ namespace WSH.UI
             panel_Parent.OtherPanelRewind(this);
             panel_PlaceSensorList.PlayAnimation();
             FindObjectOfType<Managers>().ActiveSensorFlag();
-            FindObjectOfType<CM_CameraManager>().MoveCameraTo(index);
+            FindObjectOfType<CM_CameraManager>().MoveTo(index);
         }
     }
 }

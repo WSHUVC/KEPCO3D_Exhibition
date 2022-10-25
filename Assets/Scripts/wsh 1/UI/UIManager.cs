@@ -16,7 +16,6 @@ namespace WSH.Core.Manager
             var trashs = FindObjectsOfType<UIManager>();
             if (trashs.Length > 1)
             {
-                Debug.Log($"12345!");
                 for(int i = 1; i < trashs.Length; ++i)
                 {
                     var target = trashs[i];
@@ -26,6 +25,30 @@ namespace WSH.Core.Manager
             }
             managers = FindObjectOfType<Managers>();
             canvasis = FindObjectsOfType<CanvasBase>();
+        }
+
+        Resolution prev;
+        public void ResolutionPatch()
+        {
+            return;//사용금지. 수정중
+            var resol = Screen.currentResolution;
+            var xratio = prev.width / resol.width;
+            var yratio = prev.height / resol.height;
+            var uis = Resources.FindObjectsOfTypeAll<RectTransform>();
+            Debug.Log($"{resol.width}*{resol.height}");
+            foreach (var c in uis)
+            {
+                var scaler = c.GetComponent<UIScaler>();
+                if (scaler == null)
+                    continue;
+                var rect = c.GetComponent<RectTransform>();
+                var size = rect.sizeDelta;
+                size.x = size.x * xratio;
+                size.y = size.y * yratio;
+                rect.sizeDelta = size;
+                scaler.OriginSizeChange();
+            }
+            prev = resol;
         }
 
         UI_Canvas_Idle canvas_Idle;

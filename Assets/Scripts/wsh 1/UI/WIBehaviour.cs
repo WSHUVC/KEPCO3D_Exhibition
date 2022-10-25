@@ -9,14 +9,9 @@ namespace WSH.UI
 {
     public class WIBehaviour : MonoBehaviour
     {
-        public static List<WIBehaviour> customUIList = new List<WIBehaviour>();
         public static Dictionary<Type, CanvasBase> canvasTable = new Dictionary<Type, CanvasBase>();
         public static Dictionary<Type, List<PanelBase>> panelTable = new Dictionary<Type, List<PanelBase>>();
         public static Dictionary<WIBehaviour, List<UIBehaviour>> uiElementsTable = new Dictionary<WIBehaviour, List<UIBehaviour>>();
-        void Awake()
-        {
-            customUIList.Add(this);
-        }
 
         public T GetCanvas<T>() where T : CanvasBase
         {
@@ -65,47 +60,43 @@ namespace WSH.UI
             return origin as T2;
         }
 
-        public bool GetUIElement<T>(string name, out T result) where T : UIBehaviour
+        static Dictionary<WIBehaviour, Dictionary<string, List<UIBehaviour>>> childElementTable = 
+            new Dictionary<WIBehaviour, Dictionary<string, List<UIBehaviour>>>();
+        public bool GetUIElement<T>(string targetName, out T result) where T : UIBehaviour
         {
-            if (uiElementsTable.TryGetValue(this, out var list))
+            result = null;
+            if(childElementTable.TryGetValue(this, out var childNameTable))
             {
-                foreach(var l in list)
+                if(childNameTable.TryGetValue(targetName, out var uiList))
                 {
-                    if(l is T && l.gameObject.name.Equals(name))
+                    foreach(var t in uiList)
                     {
-                        result = l as T;
-                        return true;
+                        if(t is T)
+                        {
+                            result = t as T;
+                            return true;
+                        }
                     }
                 }
             }
-            var load = GetComponentsInChildren<UIBehaviour>();
-            if (load == null || load.Length == 0)
+            childElementTable.Add(this, new Dictionary<string, List<UIBehaviour>>());
+            var childs = gameObject.GetComponentsInChildren<UIBehaviour>()
+                .Where(c => c.transform.parent == transform || c.transform == transform).ToList();
+            foreach (var c in childs)
             {
-                result = null;
-                return false;
-            }
-
-            var reload = load.Where(l => l.transform.parent == transform || l.transform == transform).ToList();
-            if(!uiElementsTable.ContainsKey(this))
-                uiElementsTable.Add(this, reload);
-
-            foreach(var r in reload)
-            {
-                if(r is T && r.gameObject.name.Equals(name))
+                var childName = c.gameObject.name;
+                if (!childElementTable[this].TryGetValue(childName, out var childUIList))
                 {
-                    result = r as T;
-                    return true;
+                    childElementTable[this].Add(childName, new List<UIBehaviour>());
+                }
+                childElementTable[this][childName].Add(c);
+                if (c is T && c.gameObject.name.Equals(targetName))
+                {
+                    result = c as T;
                 }
             }
 
-            result = null;
-            return false;
-        }
-
-
-        public T[] GetUIElements<T>() where T : UIBehaviour
-        {
-            return null;
+            return result != null;
         }
         protected virtual void OnEnable() { }
         public virtual void Active() { }
@@ -121,7 +112,14 @@ namespace WSH.UI
         {
             animator.GetComponent<UIAnimator>().Play();
         }
-
+        public virtual void PlayAnimation(UIBehaviour ui)
+        {
+            ui.GetComponent<UIAnimator>().Play();
+        }
+        public virtual void RewindAnimation(UIBehaviour ui)
+        {
+            ui.GetComponent<UIAnimator>().Rewind();
+        }
         public virtual void RewindAnimation()
         {
             GetComponent<UIAnimator>().Rewind();

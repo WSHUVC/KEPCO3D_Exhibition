@@ -12,7 +12,8 @@ namespace WSH.UI
         public override void Initialize()
         {
             base.Initialize();
-            GetUIElement(name, out button_PlaceSensor);
+            //Debug.Log(gameObject.name);
+            GetUIElement(gameObject.name, out button_PlaceSensor);
             button_PlaceSensor.onClick.AddListener(OnClick_MoveToSensor);
         }
 
