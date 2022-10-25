@@ -90,18 +90,21 @@ public class QuadScript : MonoBehaviour
     public void SetPattern1()
     {
         pattern = GraphPattern.Pattern1;
+        mProceeded = -1f;
         DeleteGraph();
         PlayGraph();
     }
     public void SetPattern2()
     {
         pattern = GraphPattern.Pattern2;
+        mProceeded = -1f;
         DeleteGraph();
         PlayGraph();
     }
     public void SetPattern3()
     {
         pattern = GraphPattern.Pattern3;
+        mProceeded = -1f;
         DeleteGraph();
         PlayGraph();
     }
