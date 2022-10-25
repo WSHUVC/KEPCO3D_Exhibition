@@ -20,7 +20,20 @@ namespace WSH.UI
         public override void Deactive()
         {
             base.Deactive();
+            DeleteGraph();
             RewindAnimation(panel_RightMenu);
+
+
+        }
+
+        void PlayGraph()
+        {
+            GameObject.FindObjectOfType<QuadScript>().PlayGraph();
+        }
+
+        void DeleteGraph()
+        {
+            GameObject.FindObjectOfType<QuadScript>().DeleteGraph();
         }
     }
 }

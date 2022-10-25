@@ -73,13 +73,16 @@ namespace WSH.UI
             prevSelectedButton = buttons[(int)TabButtonElements.Button_AllInfo];
 
             int PanelElementsCount = System.Enum.GetValues(typeof(TabPanelElements)).Length;
-            //UI_Panel_InfoTab tmpPanel;
-            //for (int i = 0; i < PanelElementsCount; i++)
-            //{
-            //    GetPanels(out tmpPanel);
-            //    tabs.Add(tmpPanel);
-            //}
-            GetPanels<UI_Panel_InfoTab>(out tabs);
+
+            //GetPanels<UI_Panel_InfoTab>(out tabs);
+            UI_Panel_InfoTab tmpPanel;
+
+            for (int i = 0; i < PanelElementsCount; i++)
+            {
+                GetUIElement(((TabPanelElements)i).ToString(), out tmpPanel);
+                tabs.Add(tmpPanel);
+            }
+
             for ( int i = 1; i < PanelElementsCount; i++)
             {
                tabs[i].gameObject.SetActive(false);
@@ -104,6 +107,8 @@ namespace WSH.UI
         {
             string name = EventSystem.current.currentSelectedGameObject.name;
             int selectedIndex = (int)(TabButtonElements)System.Enum.Parse(typeof(TabButtonElements), name);
+
+            Debug.Log(name);
 
             prevSelectedButton.GetComponent<Image>().enabled = false;
             prevSelectedPanel.gameObject.SetActive(false);
