@@ -10,21 +10,23 @@ using System;
 
 public class CM_CameraManager : MonoBehaviour
 {
+    public enum CM_CameraState
+    {
+        Moving,
+        None,
+    }
+
+    public CM_CameraState CM_cameraState = CM_CameraState.None;
+
+
     // TargetController에  이동시킬 way의 startpoint, endPoint, way dierect 를 정해줌
     public int currentWayPoint = 0;
     public CinemachineVirtualCamera TargetTracking_Camera;
     public TargetController targetController;
     public Transform[] wayPoints;
     public GameObject[] ways;
-
-    // Paths
-    public CinemachineSmoothPath MainTrack;
-    public CinemachineSmoothPath FirstZoneTrack;
-    //public CinemachineSmoothPath SecondZoneTrack;
-    //public CinemachineSmoothPath ThirdZoneTrack;
-
-    // Sensors
-    public Tag_Sensor[] sensors;
+    public CinemachineSmoothPath MainTrack;      // Paths
+    public Tag_Sensor[] sensors; // Sensors
 
     private void Awake()
     {
@@ -39,6 +41,9 @@ public class CM_CameraManager : MonoBehaviour
     }
     IEnumerator MoveOrderTo(int finalDestination)
     {
+        // camera State 무빙 
+        CM_cameraState = CM_CameraState.Moving;
+
         Graph graph = new Graph();
         int flag = currentWayPoint;
         Debug.Log($"현재위치 ViewPoint :  {flag} ! 이동시작! ");
@@ -59,40 +64,46 @@ public class CM_CameraManager : MonoBehaviour
             Debug.Log($"WayPoint : {flag}로부터 Waypoint : {graph.destinations[i]}로 Way :{way}번 길을 {!reversed} 방향 시작 ");
             targetController.moveTargetAsync(wayPoints[flag], wayPoints[graph.destinations[i]], ways[way], reversed);
             Debug.Log($"WayPoint : {wayPoints[flag].name}로부터 Waypoint : {wayPoints[graph.destinations[i]].name}로 Way :{ways[way].name}번 길을 {!reversed} 방향 이동 완료 ");
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(3);
             flag = graph.destinations[i];
- 
+
+            
         }
         // 최종 목적지를 현재 포지션으로
         currentWayPoint = finalDestination;
+        Debug.Log("Target이 최종 목적지 도착");
+         
+        Invoke("FinishCameraMoving", 4f);
     }
-    public void ZoomintoSensor(int sensorNumber)
+
+    private  void FinishCameraMoving()
     {
-        if (sensorNumber < 0 || sensors.Length <= sensorNumber)
-            return;
+        CM_cameraState = CM_CameraState.None;
+        Debug.Log("카메라 무빙 완료");
+    }
+    public void ZoomintoSensor(Tag_Sensor sensor)
+    {
+       
         //ZoomTrack 으로 변경
-        switch (sensorNumber)
+        switch (sensor.myPlaceGroup)
         {
-            case int n when (n < 4):
-                Debug.Log("FirstZone Excute");
+            case PlaceGroup._345kVGIS:
+                Debug.Log("Sensor loacated in First Excute");
                 currentWayPoint = 1;
-                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = FirstZoneTrack;
                 break;
-
-            case int n when (n < 8 && n >= 4):
-                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = SecondZoneTrack;
+            case PlaceGroup.주변압기:
+                Debug.Log("Sensor located in Second Zone");
                 currentWayPoint = 2;
-                Debug.Log("SecondZone Excute");
+                break;
+            case PlaceGroup._765kVGIS: 
+                currentWayPoint = 3;
+                Debug.Log("Sensor located in ThirdZone");
                 break;
 
-            case int n when (12 < 8 && n >= 8):
-                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = ThirdZoneTrack;
-                currentWayPoint = 3;
-                Debug.Log("ThirdZone Excute");
-                break;
+ 
         }
         // 3개중 하나 
         // Target을 센서 위치로 이동
-        targetController.transform.position = sensors[sensorNumber].transform.position;
+        targetController.transform.position = sensor.transform.position;
     }
 }

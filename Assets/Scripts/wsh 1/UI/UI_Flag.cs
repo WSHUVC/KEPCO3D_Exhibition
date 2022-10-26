@@ -90,8 +90,8 @@ namespace WSH.UI
             }
             else if(targetEntity is Tag_Sensor)
             {
-                FindObjectOfType<CM_CameraManager>().ZoomintoSensor(targetEntity.index);
                 var sensor = targetEntity as Tag_Sensor;
+                FindObjectOfType<CM_CameraManager>().ZoomintoSensor(sensor);
                 sensor.ActiveOutline();
                 //Debug.Log($"{name}");
                 //Debug.Log($"{sensor.name}");

@@ -10,6 +10,7 @@ namespace WSH.UI
 {
     public class UI_Panel_PlaceAndSensor : PanelBase
     {
+        CM_CameraManager cmManager;
         public UI_Panel_PlaceSensorList panel_PlaceSensorList;
         public int index;
         public Button button_Place;
@@ -20,6 +21,7 @@ namespace WSH.UI
             panel_PlaceSensorList = GetComponentInChildren<UI_Panel_PlaceSensorList>();
             GetUIElement("Button_Place", out button_Place);
             button_Place.onClick.AddListener(OnClick_Place);
+            cmManager = FindObjectOfType<CM_CameraManager>();
         }
 
         public override void Deactive()
@@ -29,6 +31,7 @@ namespace WSH.UI
 
         void OnClick_Place()
         {
+            if (cmManager.CM_cameraState == CM_CameraManager.CM_CameraState.Moving) return;
             Debug.Log($"OnClick_Place:{name}");
             panel_Parent.OtherPanelRewind(this);
             panel_PlaceSensorList.PlayAnimation();

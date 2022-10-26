@@ -24,7 +24,7 @@ namespace WSH.UI
             Debug.Log($"{name}:OnClick_MoveToSensor:index={index}");
             GetCanvas<UI_Canvas_LeftMenu>().Active();
             GetCanvas<UI_Canvas_RightMenu>().Active();
-            FindObjectOfType<CM_CameraManager>().ZoomintoSensor(mySensor.index);
+            FindObjectOfType<CM_CameraManager>().ZoomintoSensor(mySensor);
         }
         public Tag_Sensor mySensor;
         public UI_Flag myFlag;
