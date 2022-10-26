@@ -73,19 +73,19 @@ public class CM_CameraManager : MonoBehaviour
         //ZoomTrack 으로 변경
         switch (sensorNumber)
         {
-            case int n when (n < 4):
+            case int n when (n < 3):
                 Debug.Log("FirstZone Excute");
                 currentWayPoint = 1;
                 //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = FirstZoneTrack;
                 break;
 
-            case int n when (n < 8 && n >= 4):
+            case int n when (n < 6 && n >= 3):
                 //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = SecondZoneTrack;
                 currentWayPoint = 2;
                 Debug.Log("SecondZone Excute");
                 break;
 
-            case int n when (12 < 8 && n >= 8):
+            case int n when (n < 9 && n >= 6):
                 //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = ThirdZoneTrack;
                 currentWayPoint = 3;
                 Debug.Log("ThirdZone Excute");
