@@ -66,33 +66,29 @@ public class CM_CameraManager : MonoBehaviour
         // 최종 목적지를 현재 포지션으로
         currentWayPoint = finalDestination;
     }
-    public void ZoomintoSensor(int sensorNumber)
+    public void ZoomintoSensor(Tag_Sensor sensor)
     {
-        if (sensorNumber < 0 || sensors.Length <= sensorNumber)
-            return;
+       
         //ZoomTrack 으로 변경
-        switch (sensorNumber)
+        switch (sensor.myPlaceGroup)
         {
-            case int n when (n < 3):
-                Debug.Log("FirstZone Excute");
+            case PlaceGroup._345kVGIS:
+                Debug.Log("Sensor loacated in First Excute");
                 currentWayPoint = 1;
-                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = FirstZoneTrack;
                 break;
-
-            case int n when (n < 6 && n >= 3):
-                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = SecondZoneTrack;
+            case PlaceGroup.주변압기:
+                Debug.Log("Sensor located in Second Zone");
                 currentWayPoint = 2;
-                Debug.Log("SecondZone Excute");
+                break;
+            case PlaceGroup._765kVGIS: 
+                currentWayPoint = 3;
+                Debug.Log("Sensor located in ThirdZone");
                 break;
 
-            case int n when (n < 9 && n >= 6):
-                //TargetTracking_Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = ThirdZoneTrack;
-                currentWayPoint = 3;
-                Debug.Log("ThirdZone Excute");
-                break;
+ 
         }
         // 3개중 하나 
         // Target을 센서 위치로 이동
-        targetController.transform.position = sensors[sensorNumber].transform.position;
+        targetController.transform.position = sensor.transform.position;
     }
 }
