@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,22 +10,6 @@ namespace WSH.Util
     {
         static Dictionary<Transform, Dictionary<string, List<UIBehaviour>>> childElementTable =
     new Dictionary<Transform, Dictionary<string, List<UIBehaviour>>>(); 
-        public static bool TryGetValue<T1, T2>
-        (this Dictionary<T1,T2> table, T1 key, out T2 result, Func<T1, T1, bool> groupCheck)
-        {
-            if (table.TryGetValue(key, out result))
-            {
-                return true;
-            }
-
-            //value = FindObjectsOfType<T2>().Where;
-            if (result == null)
-                return false;
-
-            table.Add(key, result);
-            result = default(T2);
-            return true;
-        }
 
         public static bool GetUIElement<T>(this Transform root, string targetName, out T result) where T : UIBehaviour
         {

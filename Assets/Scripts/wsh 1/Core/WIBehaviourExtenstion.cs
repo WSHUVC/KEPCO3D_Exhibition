@@ -31,7 +31,7 @@ namespace WSH.UI
             GetPanels<T>(root, out var panels);
             if (panels == null || panels.Count == 0)
                 return false;
-            result = panels[0] as T;
+            result = panels[0];
             return true;
         }
         public static bool GetPanels<T>(this Transform root, out List<T> result) where T : PanelBase

@@ -31,6 +31,7 @@ public class QuadScript : MonoBehaviour
 
 
     public GraphPattern pattern;
+    public ProjectileScript projectile;
 
     public enum GraphPattern
     {
@@ -59,10 +60,10 @@ public class QuadScript : MonoBehaviour
         isPlaying = false;
 
         pattern = GraphPattern.Pattern1;
-
         for (int i = 0; i < 450; i++)
         {
-            projectiles.Add(Instantiate(Resources.Load<GameObject>("Projectile"), this.transform).GetComponent<ProjectileScript>());
+            var copy = Instantiate(projectile, transform);
+            projectiles.Add(copy);
         }
 
     }

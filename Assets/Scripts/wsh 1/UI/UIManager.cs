@@ -49,7 +49,6 @@ namespace WSH.Core.Manager
         public List<OutlineObject> outlineObjects = new List<OutlineObject>();
         public Color outlineColor;
         public Volume outlineOption;
-
         private void Awake()
         {
             var option = outlineOption.sharedProfile.components;
