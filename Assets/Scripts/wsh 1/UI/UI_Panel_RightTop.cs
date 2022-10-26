@@ -30,7 +30,6 @@ namespace WSH.UI
             button_SceneChange.onClick.AddListener(OnClick_SceneChange);
             button_SimulationMode.onClick.AddListener(OnClick_SimulationMode);
             button_Sensor.onClick.AddListener(OnClick_Sensor);
-            button_Sensor.gameObject.SetActive(false);
             button_SceneChange.gameObject.SetActive(false);
             StartCoroutine(Timer());
         }
