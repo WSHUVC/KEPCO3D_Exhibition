@@ -11,14 +11,68 @@ using Debug = WSH.Util.Debug;
 
 namespace WSH.UI
 {
+    public enum Day
+    {
+        Night,
+        AfterNoon,
+    }
+
     public class UI_Canvas_Idle : CanvasBase
     {
+
+        private Day day = Day.AfterNoon;
+
+        public GameObject nightSkyFog;
+        public GameObject nightGlobal;
+        public GameObject nightSun;
+        // 
+        public GameObject SkyFog;
+        public GameObject SkyGlobal;
+        public GameObject MorningSun;
+
+
+        // 
+        public GameObject fader;
+
+        float sunAngle = -30.0f ;
+
+        public Day Today
+        {
+            get { return day; }
+            set 
+            { day = value;
+                switch (day)
+                {
+                    case Day.Night:
+                        nightGlobal.SetActive(true);
+                        nightSkyFog.SetActive(true);
+                        nightSun.SetActive(true);
+                        SkyFog.SetActive(false);
+                        SkyGlobal.SetActive(false);
+                        MorningSun.SetActive(false);
+                        break;
+                    case Day.AfterNoon:
+                        nightGlobal.SetActive(false);
+                        nightSkyFog.SetActive(false);
+                        nightSun.SetActive(false);
+                        SkyFog.SetActive(true);
+                        SkyGlobal.SetActive(true);
+                        MorningSun.SetActive(true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+
         UIManager um;
         public Button button_IdleOff;
         Image image_GradiantBackground;
         GameObject lights;
         [SerializeField]float timer = 0f;
         public float inputBlockWatingTime = 0f;
+
         PlayableDirector timeLines;
         PlayableDirector simulationSequence;
 
@@ -26,6 +80,10 @@ namespace WSH.UI
 
         public override void Initialize()
         {
+         
+            Today = Day.AfterNoon;
+  
+
             um = FindObjectOfType<UIManager>();
             GetUIElement("Button_IdleOff", out button_IdleOff);
             GetUIElement("Image_GradiantBackground",out image_GradiantBackground);
@@ -64,6 +122,23 @@ namespace WSH.UI
         {
             if (Input.GetMouseButton(0))
                 timer = 0f;
+
+            if (Input.GetMouseButtonUp(1))
+                Today = (Today == Day.AfterNoon) ? Day.Night : Day.AfterNoon;
+
+            if(Input.GetKeyDown("u"))
+                movingSunAxisXRotation();
+
+       
+        }
+
+        private void LateUpdate()
+        {
+           sunAngle += Time.deltaTime;
+            if (sunAngle % 1 == 0)
+                Debug.Log($"{sunAngle}");
+
+            if (sunAngle > 160) sunAngle = -30;
         }
         IEnumerator IdleChanger()
         {
@@ -100,12 +175,38 @@ namespace WSH.UI
         public void OnClickedPlayOffButton()
         {
             lights.SetActive(true);
+            fader.SetActive(false);
             timeLines.gameObject.SetActive(false);
+      
+            
         }
         private void OnClickedPlayOnButton()
         {
             lights.SetActive(false);
+            fader.SetActive(true);
             SequenceChange(SquenceType.Normal);
+            
+        }
+
+        private void movingSunAxisXRotation()
+        {
+            Transform morningSunTrnasfrom = MorningSun.GetComponent<Transform>();
+
+            // Set to Sunrise rotation
+            if (((int)morningSunTrnasfrom.rotation.x) > 160)
+            {
+                sunAngle = 20f;
+                morningSunTrnasfrom.rotation = Quaternion.Euler(new Vector3(sunAngle, 0.0f, 0.0f)); //  setsunaxis to sunrise axis
+
+
+            } else
+            {
+                morningSunTrnasfrom.rotation = Quaternion.Slerp(morningSunTrnasfrom.rotation, Quaternion.Euler(new Vector3(sunAngle, 0.0f, 0.0f)), 1f);
+                sunAngle += 30f;
+                Debug.Log($"{sunAngle}");
+            }
+
         }
     }
+    
 }
