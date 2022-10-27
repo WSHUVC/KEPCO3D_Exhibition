@@ -39,7 +39,7 @@ namespace WSH.Core
 
         public UI_Flag prefab_Flag_Sensor;
         public UI_Flag prefab_Flag_Place;
-
+        
         public void FindTagObjects()
         {
             roads = FindObjectsOfType<Tag_Road>();
@@ -52,7 +52,6 @@ namespace WSH.Core
             sensors = FindObjectsOfType<Tag_Sensor>();
             places = FindObjectsOfType<Tag_Place>();
         }
-
         public void SetDefaultMaterial()
         {
             SetDefalutMaterial(roads, GroupIndex.Road);
@@ -84,6 +83,8 @@ namespace WSH.Core
             {
                 DestroyImmediate(flags[i].gameObject);
             }
+            placeFlags.Clear();
+            sensorFlags.Clear();
         }
         public void ActivePlaceFlag()
         {
@@ -93,7 +94,6 @@ namespace WSH.Core
         {
             GroupFlagControl(sensors,true);
         }
-
         public void DeactiveSensorFlag()
         {
             GroupFlagControl(sensors, false);
@@ -106,9 +106,11 @@ namespace WSH.Core
         void GroupFlagControl(TagBase[] group, bool isActive)
         {
             foreach (var f in group)
-                f.gameObject.SetActive(isActive);
+                f.myFlag.SetActive(isActive);
         }
 
+        public List<UI_Flag> placeFlags = new List<UI_Flag>();
+        public List<UI_Flag> sensorFlags = new List<UI_Flag>();
         void Flagging(TagBase[] points, UI_Flag prefab)
         {
             foreach (var p in points)
@@ -119,6 +121,15 @@ namespace WSH.Core
                     DestroyImmediate(p.myFlag.gameObject);
 
                 p.myFlag = flag.gameObject;
+
+                if(p is Tag_Place)
+                {
+                    placeFlags.Add(flag);
+                }
+                else if(p is Tag_Sensor)
+                {
+                    sensorFlags.Add(flag);
+                }
             }
         }
         void SetDefalutMaterial(MeshRenderer[] group, GroupIndex index)
@@ -148,6 +159,9 @@ namespace WSH.Core
 
         private void Awake()
         {
+            FlagCleaning();
+            PlaceFlagging();
+            SensorFlagging();
             DeactivePlaceFlag();
             DeactiveSensorFlag();
         }

@@ -10,13 +10,16 @@ public class UIScalerEditor : Editor
     {
         scaler = target as UIScaler;
         ratio = 1f;
+        if (scaler.originSize== Vector2.zero)
+            scaler.OriginSizeChange();
+        scaler.SetScalePerRatio(ratio);
     }
 
     float ratio;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        ratio = EditorGUILayout.Slider("SizeRatio",scaler.sizeRatio, 0f,1f);
+        ratio = EditorGUILayout.Slider("SizeRatio",scaler.sizeRatio, 0,2f);
         if (ratio != scaler.sizeRatio)
             scaler.SetScalePerRatio(ratio);
         if (GUILayout.Button("OriginChange"))

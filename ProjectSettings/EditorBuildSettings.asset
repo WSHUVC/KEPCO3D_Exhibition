@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/lyh_reality.unity
-    guid: bb59560efa144894e9eabc08ebde20db
+    path: Assets/Scenes/wsh/wsh_ 12.unity
+    guid: 621251c4a180e4744ad6dd5ec56a333e
   m_configObjects: {}

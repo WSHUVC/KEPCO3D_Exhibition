@@ -10,23 +10,10 @@ using UnityEngine;
 
 public class TargetController : MonoBehaviour
 {
-    
-
     // Node ฐüทร 
     public GameObject way;
     public Transform[] nodes; 
     public List<Vector3> nodesPositions = new List<Vector3>();
-
-
-    private void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
 
     public void moveTargetAsync(Transform startPoint, Transform targetPoint, GameObject selectedway, bool Reverse)
     {
@@ -55,12 +42,10 @@ public class TargetController : MonoBehaviour
         BeizerMove_Test();
     }
 
-
-    public void moveToSensor(Transform ts)
-    {
-        transform.position = Vector3.Lerp(transform.position, ts.position, 3);
-    }
-
+    //public void moveToSensor(Transform ts)
+    //{
+    //    transform.position =ts.position;
+    //}
 
     IEnumerator LerpPosition(Vector3[] targetPositions, float duration)
     {
@@ -73,9 +58,6 @@ public class TargetController : MonoBehaviour
             yield return null;
         }
     }
-
-
-
     public Vector3 Lerp(Vector3[] points, float process)
     {
         Vector3[] lerpPoints;
@@ -94,12 +76,10 @@ public class TargetController : MonoBehaviour
     public void BeizerMove_Test()
     {
         StartCoroutine(LerpPosition(nodesPositions.ToArray(), 3));
- 
     }
 
     public void BeizerMoveRevert_Test()
     {
         nodesPositions.Reverse();
-
     }
 }

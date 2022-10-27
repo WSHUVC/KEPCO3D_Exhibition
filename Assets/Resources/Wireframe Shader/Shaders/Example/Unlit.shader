@@ -19,7 +19,7 @@
 
             #include "UnityCG.cginc"
 
-            #include "Assets/Amazing Assets/Wireframe Shader/Shaders/cginc/WireframeShader.cginc"   //--------------Path to the Wireframe cginc
+            #include "Assets/Resources/Wireframe Shader/Shaders/cginc/WireframeShader.cginc"   //--------------Path to the Wireframe cginc
 
 
             float _WireframeShader_Thickness;

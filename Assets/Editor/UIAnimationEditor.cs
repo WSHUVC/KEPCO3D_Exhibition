@@ -5,13 +5,13 @@ using UnityEngine.UIElements;
 using WSH.UI;
 
 [CanEditMultipleObjects]
-[CustomEditor(typeof(UIAnimation))]
+[CustomEditor(typeof(UIAnimator))]
 public class UIAnimationEditor : Editor
 {
-    UIAnimation anim;
+    UIAnimator anim;
     private void OnEnable()
     {
-        anim = target as UIAnimation;
+        anim = target as UIAnimator;
     }
     public override void OnInspectorGUI()
     {
