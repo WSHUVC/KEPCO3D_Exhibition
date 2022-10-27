@@ -8,13 +8,10 @@ namespace WSH.UI
 {
     public class UI_Panel_BottomButtons : PanelBase
     {
-        public Button[] placeButtons;
         public UI_Panel_PlaceAndSensor[] panel_PlaceAndSensors;
 
         public override void Initialize()
         {
-            placeButtons = GetComponentsInChildren<Button>();
-                
             panel_PlaceAndSensors = GetComponentsInChildren<UI_Panel_PlaceAndSensor>();
             foreach(var p in panel_PlaceAndSensors)
             {
@@ -22,14 +19,13 @@ namespace WSH.UI
             }
         }
 
-        UI_Panel_PlaceAndSensor prev;
-        public void OtherPanelRewind(UI_Panel_PlaceAndSensor currentPanel)
+        public void OtherPanelRewind()
         {
-            if (prev != null)
-                prev.Deactive();
-            prev = currentPanel;
-            if (prev.panel_PlaceSensorList.currentSensor != null)
-                prev.panel_PlaceSensorList.currentSensor.DeactiveOutline();
+            foreach(var panel in panel_PlaceAndSensors)
+            {
+                panel?.panel_PlaceSensorList?.currentSensor?.DeactiveOutline();
+                panel.Deactive();
+            }
             GetCanvas<UI_Canvas_LeftMenu>().Deactive();
             GetCanvas<UI_Canvas_RightMenu>().Deactive();
         }

@@ -3,11 +3,27 @@ using UnityEngine;
 
 namespace WSH.Util
 {
-    public class LabelPrinter: MonoBehaviour
+    public enum LabelGroup
+    {
+        Place,
+        Sensor,
+        SensorPart,
+    }
+
+    public struct LabelData
+    {
+        public LabelGroup group;
+        public string personalName;
+
+        public LabelGroup rootGroup;
+        public string rootName;
+    }
+
+    public class LabelPrinter : MonoBehaviour
     {
         [SerializeField]
         public SDictionary<LabelGroup, List<Label>> labelGroupTable = new SDictionary<LabelGroup, List<Label>>();
-        public void FindLabels()
+        public void LabelingObjects()
         {
             var labels = FindObjectsOfType<Label>();
             
@@ -26,8 +42,23 @@ namespace WSH.Util
                 {
                     continue;
                 }
+                l.index = currentList.Count;
                 currentList.Add(l);
             }
+        }
+
+        public void FindPreLabelObjects()
+        {
+            var labelingObjects = FindObjectsOfType<GameObject>();
+            var labelNames = typeof(LabelGroup).GetEnumNames();
+
+            foreach (var preLabel in labelingObjects)
+            {
+                var preName = preLabel.name.Split(':');
+            }
+        }
+        public void ExtractLabel()
+        {
         }
     }
 }

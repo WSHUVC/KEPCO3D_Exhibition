@@ -2,16 +2,11 @@
 
 namespace WSH.Util
 {
-    public enum LabelGroup
-    {
-        Place,
-        Sensor,
-        SensorPart,
-    }
-
     [SerializeField]
     public class Label : MonoBehaviour
     {
+        public LabelGroup rootGroup;
+        public Label rootLabel;
         public LabelGroup group;
         public string personalName;
         public int index;
