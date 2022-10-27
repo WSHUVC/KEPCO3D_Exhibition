@@ -15,16 +15,14 @@ namespace WSH.Util
 
         static void UITracking()
         {
-            var uis = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+            var uis = Resources.FindObjectsOfTypeAll(typeof(RectTransform));
             foreach(var ui in uis)
             {
-                var obj = ui as GameObject;
-                if (obj.GetComponent<EventSystem>())
-                    continue;
-                if (obj.GetComponent<UIBehaviour>())
+                var obj = ui as RectTransform;
+                if (obj.gameObject.TryGetComponent<UIBehaviour>(out var ub))
                 {
-                    obj.TryAddComponent<UIScaler>();
-                    var scalers = obj.GetComponents<UIScaler>();
+                    obj.gameObject.TryAddComponent<UIScaler>();
+                    var scalers = obj.gameObject.GetComponents<UIScaler>();
                     if (scalers.Length > 1)
                     {
                         for (int i = 1; i < scalers.Length; ++i)

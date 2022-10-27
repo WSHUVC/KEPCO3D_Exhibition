@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;

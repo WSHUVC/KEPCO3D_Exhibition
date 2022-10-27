@@ -2,6 +2,8 @@
 using System.Collections;
 using System;
 using UnityEngine.Rendering;
+using WSH.Core.Manager;
+using System.Linq;
 
 namespace Knife.HDRPOutline.Core
 {
@@ -129,6 +131,11 @@ namespace Knife.HDRPOutline.Core
 
         public void Initialize()
         {
+            var um = FindObjectOfType<UIManager>();
+            material = um.outlineMaterial;
+            if(!um.outlineObjects.Contains(this))
+                um.outlineObjects.Add(this);
+            um.outlineObjects = um.outlineObjects.Where(o => o != null).ToList();
             attachedRenderer = GetComponent<Renderer>();
             var meshFilter = GetComponent<MeshFilter>();
             if(meshFilter != null)

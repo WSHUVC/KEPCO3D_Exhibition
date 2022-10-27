@@ -9,6 +9,14 @@ namespace WSH.UI
 {
     public class TagBase : MonoBehaviour
     {
+        protected static List<TagBase> tags = new List<TagBase>();
+
+        protected virtual void Awake()
+        {
+            if (tags.Contains(this))
+                return;
+            tags.Add(this);
+        }
         public int index;
         public GameObject myFlag;
         public string customName

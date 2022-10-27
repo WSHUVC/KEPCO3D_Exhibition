@@ -24,7 +24,7 @@
 
             #include "UnityCG.cginc"
 
-            #include "Assets/Wireframe Shader/Shaders/cginc/WireframeShader.cginc"   //--------------Path to the Wireframe cginc
+            #include "Assets/Resources/Wireframe Shader/Shaders/cginc/WireframeShader.cginc"    //--------------Path to the Wireframe cginc
 
 
             #pragma shader_feature_local _MASK_NONE _MASK_PLANE _MASK_SPHERE _MASK_BOX

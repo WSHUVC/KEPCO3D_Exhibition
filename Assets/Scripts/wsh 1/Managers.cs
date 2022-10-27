@@ -106,7 +106,7 @@ namespace WSH.Core
         void GroupFlagControl(TagBase[] group, bool isActive)
         {
             foreach (var f in group)
-                f.gameObject.SetActive(isActive);
+                f.myFlag.SetActive(isActive);
         }
 
         public List<UI_Flag> placeFlags = new List<UI_Flag>();
