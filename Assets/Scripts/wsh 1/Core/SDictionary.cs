@@ -21,41 +21,39 @@ namespace WSH.Util
     /// </summary>
     /// 
     [System.Serializable]
-    public class SDictionary<T, T2>
+    public class SDictionary<T, T2> : Dictionary<T, T2>
     {
-        protected Dictionary<T, T2> table = new Dictionary<T, T2>();
         [SerializeField] public List<SKeyValuePair<T, T2>> datas=new List<SKeyValuePair<T, T2>>();
         
-        public T2 this[T key] => table[key];
-        public bool TryAdd(T key, T2 value)
+        public new bool TryAdd(T key, T2 value)
         {
-            if (table.ContainsKey(key))
+            if (base.ContainsKey(key))
                 return false;
 
-            table.Add(key, value);
+            base.Add(key, value);
             datas.Add(new SKeyValuePair<T, T2>(key, value));
             return true;
         }
 
-        public bool Remove(T key)
+        public new bool Remove(T key)
         {
-            if (!table.ContainsKey(key))
+            if (!base.ContainsKey(key))
                 return false;
             for(int i = 0; i < datas.Count; ++i)
             {
                 if (datas[i].Key.Equals(key))
                 {
                     datas.RemoveAt(i);
-                    table.Remove(key);
+                    base.Remove(key);
                     return true;
                 }
             }
             return false;
         }
 
-        public void Clear()
+        public new void Clear()
         {
-            table.Clear();
+            base.Clear();
             datas.Clear();
         }
     }

@@ -15,8 +15,10 @@ namespace WSH.Util.InspectorEditor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-  //          if (GUILayout.Button("FindLabels"))
-//                printer.FindLabels();
+            if (GUILayout.Button("LabelingObjects"))
+                printer.LabelingObjects();
+            if (GUILayout.Button("FindPreLabelObjects"))
+                printer.FindPreLabelObjects();
         }
     }
 }
