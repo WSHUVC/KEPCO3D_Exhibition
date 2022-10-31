@@ -21,7 +21,7 @@ namespace WSH.UI
         public float inputBlockWatingTime = 0f;
         PlayableDirector timeLines;
         PlayableDirector simulationSequence;
-
+        public GameObject Fader; 
         TextMeshProUGUI text_Welcome;
 
         public override void Initialize()
@@ -30,7 +30,7 @@ namespace WSH.UI
             GetUIElement("Button_IdleOff", out button_IdleOff);
             GetUIElement("Image_GradiantBackground",out image_GradiantBackground);
             GetUIElement("Text_Welcome", out text_Welcome);
-
+            Fader = GameObject.Find("Fader");
             button_IdleOff.onClick.AddListener(IdleOff);
             lights = GameObject.Find("@Lights");
             var sqs = FindObjectsOfType<PlayableDirector>();
@@ -82,6 +82,7 @@ namespace WSH.UI
             button_IdleOff.gameObject.SetActive(false);
             PlayAnimation(text_Welcome);
             StartCoroutine(IdleChanger());
+            
             OnClickedPlayOffButton();
         }
         public void IdleOn()
@@ -94,16 +95,20 @@ namespace WSH.UI
             GetCanvas<UI_Canvas_Bottom>().Deactive();
             GetCanvas<UI_Canvas_LeftMenu>().Deactive();
             GetCanvas<UI_Canvas_RightMenu>().Deactive();
+            
             OnClickedPlayOnButton();
         }
 
         public void OnClickedPlayOffButton()
         {
+           
+            Fader.SetActive(false);
             lights.SetActive(true);
             timeLines.gameObject.SetActive(false);
         }
         private void OnClickedPlayOnButton()
         {
+            Fader.SetActive(true);
             lights.SetActive(false);
             SequenceChange(SquenceType.Normal);
         }

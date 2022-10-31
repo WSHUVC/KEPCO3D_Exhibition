@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 
 namespace WSH.Util
@@ -50,15 +55,61 @@ namespace WSH.Util
         public void FindPreLabelObjects()
         {
             var labelingObjects = FindObjectsOfType<GameObject>();
-            var labelNames = typeof(LabelGroup).GetEnumNames();
 
+            List<string> preLabelNameList = new List<string>();
+            Dictionary<GameObject,string> prelabelGroupTable = new Dictionary<GameObject, string>();
             foreach (var preLabel in labelingObjects)
             {
                 var preName = preLabel.name.Split(':');
+                if (preName.Length < 3)
+                    continue;
+                
+                preLabelNameList.Add(preName[1]);
+                prelabelGroupTable.Add(preLabel, preName[1]);
+                preLabel.TryAddComponent<Label>().personalName = preName[2];
             }
+
+            WriteLabelGroup(preLabelNameList);
+            foreach(var pair in prelabelGroupTable)
+            {
+                var obj = pair.Key;
+                var groupName = pair.Value;
+
+                var label = obj.GetComponent<Label>();
+                
+            }
+        }
+
+        public string labelGroupFilePath;
+        void WriteLabelGroup(List<string> labelGroupNames)
+        {
+            if (string.IsNullOrEmpty(labelGroupFilePath))
+            {
+                var printerPath = GetPrinterPath(typeof(LabelPrinter));
+                var printerFileLength = printerPath.Split('\\').Last().Length;
+                var newPath = printerPath.Substring(0, printerPath.Length - printerFileLength);
+                newPath += $"LabelGroup.cs";
+                labelGroupFilePath = newPath;
+            }
+            using (StreamWriter sw = new StreamWriter(labelGroupFilePath))
+            {
+                sw.WriteLine("public enum LabelGroup");
+                sw.WriteLine("{");
+                for(int i = 0; i < labelGroupNames.Count; ++i)
+                {
+                    sw.WriteLine($"\t_{labelGroupNames[i]},");
+                }
+                sw.WriteLine("}");
+            }
+        }
+
+        string GetPrinterPath(Type t, [CallerFilePath]string file="")
+        {
+            return file;
         }
         public void ExtractLabel()
         {
         }
     }
 }
+

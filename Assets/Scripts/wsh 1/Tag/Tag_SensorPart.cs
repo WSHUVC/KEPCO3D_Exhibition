@@ -14,7 +14,8 @@ namespace WSH.UI
         Material origin;
         MeshRenderer mesh;
         [SerializeField] OutlineObject outline;
-        private void Awake()
+
+        protected override void Awake()
         {
             mesh = GetComponent<MeshRenderer>();
             origin = mesh.material;
