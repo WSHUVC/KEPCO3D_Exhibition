@@ -78,7 +78,6 @@ namespace WSH.Core.Manager
             //canvas_Tabs.Active();
             canvas_TopBar.Active();
             canvas_Bottom.Active();
-
             managers.ActivePlaceFlag();
         }
 

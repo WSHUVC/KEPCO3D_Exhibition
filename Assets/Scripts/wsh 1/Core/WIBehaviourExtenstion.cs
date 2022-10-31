@@ -53,7 +53,9 @@ namespace WSH.UI
             panelTable.Add(panelType, data);
             return false;
         }
-        static T2 PanelTypeConvertor<T, T2>(T origin) where T : WIBehaviour where T2 : WIBehaviour
+
+       
+        public static T2 PanelTypeConvertor<T, T2>(T origin) where T : WIBehaviour where T2 : WIBehaviour
         {
             return origin as T2;
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using WSH.Core;
 using Debug = WSH.Util.Debug;
@@ -16,8 +17,10 @@ namespace WSH.UI
         public Button button_Place;
         internal UI_Panel_BottomButtons panel_Parent;
 
+        EventSystem es;
         public override void Initialize()
         {
+            es = FindObjectOfType<EventSystem>();
             panel_PlaceSensorList = GetComponentInChildren<UI_Panel_PlaceSensorList>();
             GetUIElement("Button_Place", out button_Place);
             button_Place.onClick.AddListener(OnClick_Place);
@@ -37,6 +40,7 @@ namespace WSH.UI
             Debug.Log($"OnClick_Place:{name}");
             if (cmManager.MoveTo(index, button_Place))
             {
+            es.enabled = false;
                 panel_Parent.OtherPanelRewind();
             }
         }
@@ -48,6 +52,7 @@ namespace WSH.UI
             var sensors = panel_PlaceSensorList.button_PlaceSensors;
             ui_DataList.Refresh(sensors);
             panel_PlaceSensorList.PlayAnimation();
+            es.enabled = true;
         }
     }
 }

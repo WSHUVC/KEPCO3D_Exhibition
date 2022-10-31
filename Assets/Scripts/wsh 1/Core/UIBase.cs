@@ -10,13 +10,5 @@ namespace WSH.UI
     /// </summary>
     public class UIBase : WIBehaviour
     {
-        bool initialize;
-        //protected virtual void Awake()
-        //{
-        //    if (initialize)
-        //        return;
-        //    initialize = true;
-        //    Initialize();
-        //}
     }
 }

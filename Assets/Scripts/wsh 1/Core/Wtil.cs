@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using WSH.UI;
 
 namespace WSH.Util
 {
@@ -46,6 +47,45 @@ namespace WSH.Util
             }
 
             return result != null;
+        }
+
+        static Dictionary<Transform, Dictionary<Type, List<UIBase>>> childCustomUITable = 
+            new Dictionary<Transform, Dictionary<Type, List<UIBase>>>();
+
+        static Dictionary<Transform, int> childCountTable = new Dictionary<Transform, int>();
+        public static bool GetUIElements<T>(this Transform root, out T[] result) where T : UIBase
+        {
+            result = null;
+            var customType = typeof(T);
+            if (!childCountTable.ContainsKey(root))
+            {
+                childCountTable.Add(root, root.childCount);
+            }
+
+            if (!childCustomUITable.ContainsKey(root))
+            {
+                childCustomUITable.Add(root, new Dictionary<Type, List<UIBase>>());
+            }
+
+            if (!childCustomUITable[root].TryGetValue(customType, out var list))
+            {
+                list = new List<UIBase>();
+                childCustomUITable[root].Add(customType, list);
+                list.AddRange(root.GetComponentsInChildren<T>());
+            }
+
+            result = ArrayConvertor<UIBase, T>(list.ToArray());
+
+            return result != null && result.Length > 0;
+        }
+        public static T2[] ArrayConvertor<T, T2>(T[] origin) where T : WIBehaviour where T2 : WIBehaviour
+        {
+            T2[] result = new T2[origin.Length];
+            for (int i = 0; i < result.Length; ++i)
+            {
+                result[i] = origin[i] as T2;
+            }
+            return result;
         }
 
         /// <summary>
