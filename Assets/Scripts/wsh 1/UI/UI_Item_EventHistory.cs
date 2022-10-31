@@ -61,10 +61,18 @@ namespace WSH.UI
             }
         }
 
-        void OnClick_Item()
+        public void ConnectSensorButton(UI_Button_PlaceSensor button)
+        {
+            button?.button_PlaceSensor?.onClick.AddListener(OnClick_Item);
+        }
+
+        public void OnClick_Item()
         {
             Debug.Log($"OnClick_{name}");
-            FindObjectOfType<QuadScript>().DrawGraph(this.index);
+            if(index<3)
+            FindObjectOfType<QuadScript>().DrawGraph(index);
+            else
+            FindObjectOfType<QuadScript>().DrawGraph(Random.Range(0,3));
         }
     }
 }
