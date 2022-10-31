@@ -10,12 +10,6 @@ namespace WSH.UI
     {
         public List<GameObject> swaptargets = new List<GameObject>();
         int currentIndex;
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
         public override void Initialize()
         {
             base.Initialize();

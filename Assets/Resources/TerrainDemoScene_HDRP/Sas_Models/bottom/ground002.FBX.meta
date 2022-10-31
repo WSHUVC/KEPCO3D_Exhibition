@@ -3,7 +3,27 @@ guid: 8900ca452df7aaa4a8efec6df98c0676
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AP_W1
+    second: {fileID: 2100000, guid: 97ed24def0339d348aebd41ec4d1b23d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ASPHALT
+    second: {fileID: 2100000, guid: a0eb353f892df6b4089b67fb2ad47ce8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor
+    second: {fileID: 2100000, guid: 63817cd48f1100f409f4bacbc6420ba6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ground00
+    second: {fileID: 2100000, guid: a1c4c2fb6ddd28a4e96371f97afe4d04, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

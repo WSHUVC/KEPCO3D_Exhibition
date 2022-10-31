@@ -22,13 +22,6 @@ namespace WSH.UI
             base.Deactive();
             DeleteGraph();
             RewindAnimation(panel_RightMenu);
-
-
-        }
-
-        void PlayGraph()
-        {
-            GameObject.FindObjectOfType<QuadScript>().PlayGraph();
         }
 
         void DeleteGraph()

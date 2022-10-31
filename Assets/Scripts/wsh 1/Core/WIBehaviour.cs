@@ -23,6 +23,10 @@ namespace WSH.UI
         {
             return transform.GetUIElement(targetName, out result);
         }
+        public bool GetUIElements<T>(out T[] result) where T : UIBase
+        {
+            return transform.GetUIElements(out result);
+        }
 
         protected virtual void OnEnable() { }
         public virtual void Active() { }

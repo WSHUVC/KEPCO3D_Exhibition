@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using WSH.Core.Manager;
 using Debug = WSH.Util.Debug;
+using System.Linq;
 
 namespace WSH.UI
 {
@@ -17,7 +18,7 @@ namespace WSH.UI
         UIManager um;
         public override void Initialize()
         {
-            cam = Camera.main.transform;
+            cam = FindObjectsOfType<Camera>().Where(c => c.name == "Camera_Map").First().transform;
         }
         void LateUpdate()
         {
@@ -29,9 +30,9 @@ namespace WSH.UI
 
         public void Flagging(TagBase target)
         {
+            cam = FindObjectsOfType<Camera>().Where(c => c.name == "Camera_Map").First().transform;
             um = FindObjectOfType<UIManager>();
             targetEntity = target;
-            cam = Camera.main.transform;
             anims = GetComponentsInChildren<UIAnimator>();
             transform.SetParent(target.transform);
             transform.localPosition = Vector3.zero;

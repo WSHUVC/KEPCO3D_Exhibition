@@ -10,7 +10,6 @@ namespace WSH.UI
         public PlaceGroup myPlaceGroup;
         public Tag_Place myPlace;
         internal UI_Button_PlaceSensor currentSensor;
-
         public void SetPlace(Tag_Place place)
         {
             button_PlaceSensors = GetComponentsInChildren<UI_Button_PlaceSensor>();

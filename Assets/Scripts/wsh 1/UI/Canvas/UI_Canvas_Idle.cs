@@ -95,7 +95,6 @@ namespace WSH.UI
             GetCanvas<UI_Canvas_Bottom>().Deactive();
             GetCanvas<UI_Canvas_LeftMenu>().Deactive();
             GetCanvas<UI_Canvas_RightMenu>().Deactive();
-            
             OnClickedPlayOnButton();
         }
 
