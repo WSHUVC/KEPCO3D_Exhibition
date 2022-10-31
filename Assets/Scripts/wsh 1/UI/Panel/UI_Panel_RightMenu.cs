@@ -6,9 +6,5 @@ namespace WSH.UI
 {
     public class UI_Panel_RightMenu : PanelBase
     {
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
     }
 }

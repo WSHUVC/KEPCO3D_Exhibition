@@ -24,6 +24,7 @@ namespace WSH.UI
             Debug.Log($"{name}:OnClick_MoveToSensor:index={index}");
             GetCanvas<UI_Canvas_LeftMenu>().Active();
             GetCanvas<UI_Canvas_RightMenu>().Active();
+            GetCanvas<UI_Canvas_RightMenu>().DeleteGraph();
             FindObjectOfType<CM_CameraManager>().ZoomintoSensor(mySensor);
         }
         public Tag_Sensor mySensor;
