@@ -24,7 +24,7 @@ namespace WSH.UI
             RewindAnimation(panel_RightMenu);
         }
 
-        void DeleteGraph()
+        public void DeleteGraph()
         {
             GameObject.FindObjectOfType<QuadScript>().DeleteGraph();
         }

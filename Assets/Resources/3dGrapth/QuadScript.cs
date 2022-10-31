@@ -88,21 +88,40 @@ public class QuadScript : MonoBehaviour
         }
     }
 
-    public void SetPattern1()
+    public void DrawGraph(int index)
+    {
+        switch(index)
+        {
+            case 0:
+                SetPattern0();
+                break;
+            case 1:
+                SetPattern1();
+                break;
+            case 2:
+                SetPattern2();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void SetPattern0()
     {
         pattern = GraphPattern.Pattern1;
         mProceeded = -1f;
         DeleteGraph();
         PlayGraph();
     }
-    public void SetPattern2()
+    public void SetPattern1()
     {
         pattern = GraphPattern.Pattern2;
         mProceeded = -1f;
         DeleteGraph();
         PlayGraph();
     }
-    public void SetPattern3()
+    public void SetPattern2()
     {
         pattern = GraphPattern.Pattern3;
         mProceeded = -1f;

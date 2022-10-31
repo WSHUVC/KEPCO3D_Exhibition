@@ -9,13 +9,19 @@ public class AlertDetector : MonoBehaviour
     public Canvas AlarmPanel_canvas;
     public MeshRenderer alertCube;
     public MeshRenderer alertCube1;
+    public SpriteRenderer miniMapCube;
+    public SpriteRenderer miniMapCube1;
     public SpriteRenderer sprite_PlayerMarker;
     public Color color_AlertMarker;
     public Color color_originMarker;
+
+    public Color color_miniMapCubeAlert;
+    public Color color_miniMapCubeOrigin;
     private void Awake()
     {
         sprite_PlayerMarker = GetComponentInChildren<SpriteRenderer>();
         color_originMarker = sprite_PlayerMarker.color;
+        color_miniMapCubeOrigin = miniMapCube.color;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -25,12 +31,12 @@ public class AlertDetector : MonoBehaviour
         if (other.gameObject.name == "AlertCube")
         {
             Debug.Log("AlertCube Triggered");
-            Alert(alertCube, true);
+            Alert(alertCube, miniMapCube, true);
         }
 
         if (other.gameObject.name == "AlertCube1")
         {
-            Alert(alertCube1, true);
+            Alert(alertCube1, miniMapCube1, true);
         }
     }
 
@@ -38,23 +44,29 @@ public class AlertDetector : MonoBehaviour
     {
         if (other.gameObject.name == "AlertCube")
         {
-            Alert(alertCube, false);
+            Alert(alertCube, miniMapCube,false);
         }
 
         if (other.gameObject.name == "AlertCube1")
         {
-            Alert(alertCube1, false);
+            Alert(alertCube1, miniMapCube1,false);
         }
     }
 
-    void Alert(MeshRenderer mesh, bool isOn)
+    void Alert(MeshRenderer mesh, SpriteRenderer sr, bool isOn)
     {
         //mesh.enabled = isOn;
         AlarmPanel_canvas.enabled = isOn;
         mesh.GetComponent<OutlineObject>().enabled = isOn;
         if (isOn)
+        {
+            sr.color = color_miniMapCubeAlert;
             sprite_PlayerMarker.color = color_AlertMarker;
+        }
         else
+        {
+            sr.color = color_miniMapCubeOrigin;
             sprite_PlayerMarker.color = color_originMarker;
+        }
     }
 }
