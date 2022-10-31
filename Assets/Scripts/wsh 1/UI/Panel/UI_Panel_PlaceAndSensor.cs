@@ -23,6 +23,7 @@ namespace WSH.UI
             button_Place.onClick.AddListener(OnClick_Place);
             cmManager = FindObjectOfType<CM_CameraManager>();
             cmManager.cameraMoveEndEvent += CameraEvent;
+            ui_DataList = FindObjectOfType<UI_DataList>();
         }
 
         public override void Deactive()
@@ -39,11 +40,13 @@ namespace WSH.UI
                 panel_Parent.OtherPanelRewind();
             }
         }
-
+        UI_DataList ui_DataList;
         void CameraEvent(Button button)
         {
             if (button != button_Place)
                 return;
+            var sensors = panel_PlaceSensorList.button_PlaceSensors;
+            ui_DataList.Refresh(sensors);
             panel_PlaceSensorList.PlayAnimation();
         }
     }

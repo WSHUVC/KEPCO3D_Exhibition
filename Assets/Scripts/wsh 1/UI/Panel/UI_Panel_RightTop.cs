@@ -29,7 +29,7 @@ namespace WSH.UI
             button_Home.onClick.AddListener(OnClick_Home);
             button_SceneChange.onClick.AddListener(OnClick_SceneChange);
             button_SimulationMode.onClick.AddListener(OnClick_SimulationMode);
-            button_MiniMap.onClick.AddListener(OnClick_Sensor);
+            button_MiniMap.onClick.AddListener(OnClick_MiniMap);
             button_SceneChange.gameObject.SetActive(false);
             StartCoroutine(Timer());
         }
@@ -71,15 +71,9 @@ namespace WSH.UI
         }
 
         // UI_Panel_BottomButtons panel_BottomButtons;
-        bool onSensor;
-        void OnClick_Sensor()
+        void OnClick_MiniMap()
         {
-            Debug.Log($"{button_MiniMap}:OnClick_Sensor");
-            if(onSensor)
-                FindObjectOfType<Managers>().DeactiveSensorFlag();
-            else
-                FindObjectOfType<Managers>().ActiveSensorFlag();
-            onSensor = !onSensor;
+            Debug.Log($"{button_MiniMap}:OnClick_MiniMap");
         }
     }
 }

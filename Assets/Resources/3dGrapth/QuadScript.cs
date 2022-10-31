@@ -68,7 +68,7 @@ public class QuadScript : MonoBehaviour
 
     }
 
-    public void PlayGraph()
+    void PlayGraph()
     {
         foreach (ProjectileScript tmp in projectiles)
         {
@@ -200,7 +200,7 @@ public class QuadScript : MonoBehaviour
         tmpX += wallLocation.x;
         tmpY += wallLocation.y;
 
-        return new Vector3(tmpX, tmpY, _proceeded); ;
+        return new Vector3(tmpX, tmpY, _proceeded);
     }
 
 
