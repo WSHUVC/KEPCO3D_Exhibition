@@ -16,20 +16,20 @@ namespace WSH.UI
         Button button_Home;
         Button button_SceneChange;
         Button button_SimulationMode;
-        Button button_Sensor;
+        Button button_MiniMap;
 
         public override void Initialize()
         {
             GetUIElement("Button_Home", out button_Home);
             GetUIElement("Button_SceneChange", out button_SceneChange);
             GetUIElement("Button_SimulationMode", out button_SimulationMode);
-            GetUIElement("Button_Sensor", out button_Sensor);
+            GetUIElement("Button_MiniMap", out button_MiniMap);
             GetUIElement("Text_Date", out text_Date);
 
             button_Home.onClick.AddListener(OnClick_Home);
             button_SceneChange.onClick.AddListener(OnClick_SceneChange);
             button_SimulationMode.onClick.AddListener(OnClick_SimulationMode);
-            button_Sensor.onClick.AddListener(OnClick_Sensor);
+            button_MiniMap.onClick.AddListener(OnClick_Sensor);
             button_SceneChange.gameObject.SetActive(false);
             StartCoroutine(Timer());
         }
@@ -65,7 +65,7 @@ namespace WSH.UI
             GetCanvas<UI_Canvas_RightMenu>().Deactive();
             GetCanvas<UI_Canvas_Idle>().SequenceChange(UI_Canvas_Idle.SquenceType.Simulation);
             FindObjectOfType<UIManager>().OutlineOff();
-            button_Sensor.gameObject.SetActive(false);
+            //button_MiniMap.gameObject.SetActive(false);
             button_SceneChange.gameObject.SetActive(false);
             button_SimulationMode.gameObject.SetActive(false);
         }
@@ -74,7 +74,7 @@ namespace WSH.UI
         bool onSensor;
         void OnClick_Sensor()
         {
-            Debug.Log($"{button_Sensor}:OnClick_Sensor");
+            Debug.Log($"{button_MiniMap}:OnClick_Sensor");
             if(onSensor)
                 FindObjectOfType<Managers>().DeactiveSensorFlag();
             else
