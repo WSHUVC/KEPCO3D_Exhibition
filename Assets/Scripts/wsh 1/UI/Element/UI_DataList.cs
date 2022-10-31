@@ -18,14 +18,19 @@ namespace WSH.UI
         List<UI_Item_EventHistory> items = new List<UI_Item_EventHistory>();
         public void Refresh(UI_Button_PlaceSensor[] sensors)
         {
-            //var trashs = prefab_Item.GetComponents<GameObject>();
-            //for(int i = 0; i < trashs.Length; ++i)
-            //{
-            //    Destroy(trashs[i]);
-            //}
+            if ( items.Count > 0)
+            {
+                foreach(UI_Item_EventHistory tmp in items)
+                {
+                    tmp.Deactive();
+                    Destroy(tmp.gameObject);
+                }
 
-            //var items = Add(sensors.Length);
-            
+                items.Clear();
+            }
+
+            items.AddRange(Add(3));
+
         }
 
         UI_Item_EventHistory[] Add(int count = 1)
@@ -35,6 +40,8 @@ namespace WSH.UI
             {
                 var item = Instantiate(prefab_Item);
                 item.transform.SetParent(parent_Item);
+                item.GetComponent<UI_Item_EventHistory>().Initialize();
+                item.GetComponent<UI_Item_EventHistory>().index = i;
                 result[i] = item;
             }
             return result;
