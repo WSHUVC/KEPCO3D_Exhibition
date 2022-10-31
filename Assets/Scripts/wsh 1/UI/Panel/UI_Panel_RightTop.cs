@@ -79,6 +79,7 @@ namespace WSH.UI
         {
             Debug.Log($"{button_MiniMap}:OnClick_MiniMap");
             canvas_Map.Active();
+            FindObjectOfType<UIManager>().OutlineOff();
         }
     }
 }

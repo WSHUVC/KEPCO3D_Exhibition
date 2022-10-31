@@ -40,8 +40,8 @@ namespace WSH.UI
             Debug.Log($"OnClick_Place:{name}");
             if (cmManager.MoveTo(index, button_Place))
             {
-            es.enabled = false;
                 panel_Parent.OtherPanelRewind();
+                es.enabled = false;
             }
         }
         UI_DataList ui_DataList;

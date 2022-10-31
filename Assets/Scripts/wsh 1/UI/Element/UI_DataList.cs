@@ -29,7 +29,12 @@ namespace WSH.UI
                 items.Clear();
             }
 
-            items.AddRange(Add(3));
+            var temp = Add(12);
+            for(int i = 0; i < sensors.Length; ++i)
+            {
+                temp[i].ConnectSensorButton(sensors[i]);
+            }
+            items.AddRange(temp);
 
         }
 

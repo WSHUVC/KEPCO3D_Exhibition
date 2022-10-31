@@ -9,7 +9,7 @@ namespace WSH.UI
     {
         public int index;
 
-        Button button_PlaceSensor;
+        public Button button_PlaceSensor;
 
         public override void Initialize()
         {

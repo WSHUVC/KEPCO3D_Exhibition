@@ -37,8 +37,18 @@ public class CM_CameraManager : MonoBehaviour
     {
         if (CM_cameraState == CM_CameraState.Moving)
             return false;
+
+        if (index == currentWayPoint)
+        {
+            FinishCameraMoving();
+            if (button_Place != null)
+                cameraMoveEndEvent?.Invoke(button_Place);
+            return false;
+        }
+       
         Debug.Log($"Move To {index} point");
         TargetTracking_Camera.GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = MainTrack;
+        
         StartCoroutine(MoveOrderTo(index, button_Place));
         return true;
     }
@@ -77,7 +87,7 @@ public class CM_CameraManager : MonoBehaviour
         // 최종 목적지를 현재 포지션으로
         currentWayPoint = finalDestination;
         //Debug.Log("Target이 최종 목적지 도착");
-        yield return new WaitForSecondsRealtime(4f);
+        //yield return new WaitForSecondsRealtime(4f);
         FinishCameraMoving();
         cameraMoveEndEvent?.Invoke(button_Place);
         //Invoke("FinishCameraMoving", 4f);
