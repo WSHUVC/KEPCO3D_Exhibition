@@ -26,6 +26,7 @@ public class CM_CameraManager : MonoBehaviour
     public Transform[] wayPoints;
     public GameObject[] ways;
     public CinemachineSmoothPath MainTrack;      // Paths
+    public CinemachineSmoothPath FirstZoneTrack;
     public Tag_Sensor[] sensors; // Sensors
 
     private void Awake()
@@ -96,6 +97,8 @@ public class CM_CameraManager : MonoBehaviour
         {
             case PlaceGroup._345kVGIS:
                 Debug.Log("Sensor loacated in First Excute");
+                //Firstzone Track으로 트랙을 바꿔준다. 
+                TargetTracking_Camera.GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = FirstZoneTrack;
                 currentWayPoint = 1;
                 break;
             case PlaceGroup.주변압기:
