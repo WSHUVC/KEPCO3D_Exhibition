@@ -10,7 +10,7 @@ namespace WSH.Util
     {
         static HierachyTracker()
         {
-            EditorApplication.hierarchyChanged += UITracking;
+            //EditorApplication.hierarchyChanged += UITracking;
         }
 
         static void UITracking()
@@ -21,15 +21,7 @@ namespace WSH.Util
                 var obj = ui as RectTransform;
                 if (obj.gameObject.TryGetComponent<UIBehaviour>(out var ub))
                 {
-                    obj.gameObject.TryAddComponent<UIScaler>();
-                    var scalers = obj.gameObject.GetComponents<UIScaler>();
-                    if (scalers.Length > 1)
-                    {
-                        for (int i = 1; i < scalers.Length; ++i)
-                        {
-                            GameObject.DestroyImmediate(scalers[i]);
-                        }
-                    }
+
                 }
             }
         }

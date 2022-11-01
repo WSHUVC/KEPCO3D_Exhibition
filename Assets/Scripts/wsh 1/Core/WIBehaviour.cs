@@ -36,27 +36,27 @@ namespace WSH.UI
 
         public virtual void RewindAnimation(WIBehaviour animator)
         {
-            animator.GetComponent<UIAnimator>().Rewind();
+            animator.GetComponent<UISimpleAnimator>().Rewind();
         }
         public virtual void PlayAnimation(WIBehaviour animator)
         {
-            animator.GetComponent<UIAnimator>().Play();
+            animator.GetComponent<UISimpleAnimator>().Play();
         }
         public virtual void PlayAnimation(UIBehaviour ui)
         {
-            ui.GetComponent<UIAnimator>().Play();
+            ui.GetComponent<UISimpleAnimator>().Play();
         }
         public virtual void RewindAnimation(UIBehaviour ui)
         {
-            ui.GetComponent<UIAnimator>().Rewind();
+            ui.GetComponent<UISimpleAnimator>().Rewind();
         }
         public virtual void RewindAnimation()
         {
-            GetComponent<UIAnimator>().Rewind();
+            GetComponent<UISimpleAnimator>().Rewind();
         }
         public virtual void PlayAnimation()
         {
-            GetComponent<UIAnimator>().Play();
+            GetComponent<UISimpleAnimator>().Play();
         }
     }
 }

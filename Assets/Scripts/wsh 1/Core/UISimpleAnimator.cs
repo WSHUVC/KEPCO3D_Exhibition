@@ -7,7 +7,7 @@ using Debug = WSH.Util.Debug;
 
 namespace WSH.UI
 {
-    public class UIAnimator : MonoBehaviour
+    public class UISimpleAnimator : MonoBehaviour
     {
         public float speed;
         public EaseType normalEasingType;

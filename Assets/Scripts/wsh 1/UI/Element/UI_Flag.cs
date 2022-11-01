@@ -12,7 +12,7 @@ namespace WSH.UI
         protected Transform cam;
         protected TextMeshProUGUI text_Name;
         public Button button_Flag;
-        protected UIAnimator[] anims;
+        protected UISimpleAnimator[] anims;
 
         public TagBase targetEntity;
         UIManager um;
@@ -33,7 +33,7 @@ namespace WSH.UI
             cam = FindObjectsOfType<Camera>().Where(c => c.name == "Camera_Map").First().transform;
             um = FindObjectOfType<UIManager>();
             targetEntity = target;
-            anims = GetComponentsInChildren<UIAnimator>();
+            anims = GetComponentsInChildren<UISimpleAnimator>();
             transform.SetParent(target.transform);
             transform.localPosition = Vector3.zero;
             
