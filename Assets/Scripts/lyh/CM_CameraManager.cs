@@ -111,6 +111,6 @@ public class CM_CameraManager : MonoBehaviour
         }
         // 3개중 하나 
         // Target을 센서 위치로 이동
-        targetController.transform.position = sensor.transform.position;
+        targetController.transform.position = sensor.transform.position - new Vector3(0, 20, 0);
     }
 }
