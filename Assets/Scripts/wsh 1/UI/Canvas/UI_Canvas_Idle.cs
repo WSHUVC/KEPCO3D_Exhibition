@@ -13,15 +13,16 @@ namespace WSH.UI
 {
     public class UI_Canvas_Idle : CanvasBase
     {
-        UIManager um;
         public Button button_IdleOff;
-        Image image_GradiantBackground;
-        GameObject lights;
-        [SerializeField]float timer = 0f;
         public float inputBlockWatingTime = 0f;
-        PlayableDirector timeLines;
-        PlayableDirector simulationSequence;
         public GameObject Fader; 
+        [SerializeField] float timer = 0f;
+        public PlayableDirector timeLines;
+        public PlayableDirector simulationSequence;
+        public PlayableDirector electricSequence;
+        UIManager um;
+        GameObject lights;
+        Image image_GradiantBackground;
         TextMeshProUGUI text_Welcome;
 
         public override void Initialize()
@@ -33,16 +34,22 @@ namespace WSH.UI
             Fader = GameObject.Find("Fader");
             button_IdleOff.onClick.AddListener(IdleOff);
             lights = GameObject.Find("@Lights");
+
             var sqs = FindObjectsOfType<PlayableDirector>();
             timeLines = sqs.Where(s => s.gameObject.name == "Timelines").First();
             simulationSequence = sqs.Where(s => s.gameObject.name == "SimulationTimeLine").First();
+            electricSequence = sqs.Where(s => s.gameObject.name.Equals("ElectricSequence")).First();
+
+            electricSequence.gameObject.SetActive(false);
             simulationSequence.gameObject.SetActive(false);
+
             OnClickedPlayOnButton();
         }
         public enum SquenceType
         {
             Normal,
             Simulation,
+            Electric,
         }
         PlayableDirector currentSequence;
         public void SequenceChange(SquenceType st)
@@ -57,9 +64,13 @@ namespace WSH.UI
                 case SquenceType.Simulation:
                     currentSequence = simulationSequence;
                     break;
+                case SquenceType.Electric:
+                    currentSequence = electricSequence;
+                    break;
             }
             currentSequence.gameObject.SetActive(true);
         }
+
         private void Update()
         {
             if (Input.GetMouseButton(0))
@@ -81,9 +92,8 @@ namespace WSH.UI
             image_GradiantBackground.enabled = true;
             button_IdleOff.gameObject.SetActive(false);
             PlayAnimation(text_Welcome);
-            StartCoroutine(IdleChanger());
-            
             OnClickedPlayOffButton();
+            StartCoroutine(IdleChanger());
         }
         public void IdleOn()
         {
@@ -100,10 +110,10 @@ namespace WSH.UI
 
         public void OnClickedPlayOffButton()
         {
-           
             Fader.SetActive(false);
             lights.SetActive(true);
             timeLines.gameObject.SetActive(false);
+            electricSequence.gameObject.SetActive(false);
         }
         private void OnClickedPlayOnButton()
         {
