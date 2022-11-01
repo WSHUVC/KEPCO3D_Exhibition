@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,7 @@ namespace WSH.UI
             canvas_Left = GetCanvas<UI_Canvas_LeftMenu>();
             canvas_Right = GetCanvas<UI_Canvas_RightMenu>();
             ui_Flags = FindObjectsOfType<UI_Flag>();
-            camera_Map = GetComponentInChildren<Camera>();
+            camera_Map = FindObjectsOfType<Camera>().Where(c=>c.name.Equals("Camera_Map")).First();
             GetUIElement("Button_CloseMap", out button_CloseMap);
             button_CloseMap.onClick.AddListener(Deactive);
 
@@ -29,6 +30,8 @@ namespace WSH.UI
         }
 
         public bool isOn;
+        private object c;
+
         public override void Active()
         {
             if (isOn)
