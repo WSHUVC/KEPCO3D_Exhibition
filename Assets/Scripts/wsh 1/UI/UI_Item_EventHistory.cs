@@ -21,6 +21,13 @@ namespace WSH.UI
         public override void Initialize()
         {
             base.Initialize();
+            
+            if(Screen.width == 1920)
+                transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+            
+
+         
             GetUIElement(name, out button_Item);
             GetUIElement("Text_FactilityName", out text_FactilityName);
             GetUIElement("Text_SensorName", out text_SensorName);

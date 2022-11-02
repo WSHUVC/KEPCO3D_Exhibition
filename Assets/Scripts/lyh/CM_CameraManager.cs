@@ -32,6 +32,7 @@ public class CM_CameraManager : MonoBehaviour
     private void Awake()
     {
         sensors = FindObjectOfType<Managers>().sensors;
+        FirstZoneTrack = GetComponentsInChildren<CinemachineSmoothPath>().Where(c => c.name.Equals("FirstZoneTrack")).First();
     }
 
     public bool MoveTo(int index, Button button_Place= null)
